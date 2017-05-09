@@ -7,7 +7,7 @@ namespace Quizzie.Models.VM
 {
     public class QuizIndexVM
     {
-        public string Question { get; set; }
+        
 
     }
 }

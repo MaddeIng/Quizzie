@@ -130,7 +130,7 @@
     <Compile Include="Models\QuizQuestion.cs" />
     <Compile Include="Models\QuizQuestionAnswer.cs" />
     <Compile Include="Models\QuizResult.cs" />
-    <Compile Include="Models\QuizziDB.cs" />
+    <Compile Include="Models\QuizzieDB.cs" />
     <Compile Include="Models\VM\QuizIndexVM.cs" />
     <Compile Include="Models\VM\QuizQuestionsVM.cs" />
     <Compile Include="Models\VM\QuizResultsVM.cs" />

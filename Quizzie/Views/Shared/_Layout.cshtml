@@ -3,7 +3,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    @*<link href="~/Content/bootstrap.css" rel="stylesheet" />*@
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <link href="~/Content/MyStyle.css" rel="stylesheet" />
 
     <title>@ViewBag.Title</title>
@@ -11,9 +11,6 @@
 <body>
     <div>
         @RenderBody()
-        <p>Hej!</p>
-
-        <input class="btn btn-default" type="button" value="Dis da Button"/>
     </div>
 
     @RenderSection("script", false)

@@ -9,6 +9,7 @@ namespace Quizzie.Controllers
 {
     public class QuizController : Controller
     {
+        [Route("Quiz/Index")]
         public ActionResult Index()
         {
 
