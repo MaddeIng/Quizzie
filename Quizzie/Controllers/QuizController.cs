@@ -2,10 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace Quizzie.Controllers
 {
-    public class QuizController
+    public class QuizController : Controller
     {
+        public ActionResult Index()
+        {
+            return View();
+        }
+
     }
 }
