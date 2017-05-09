@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Quizzie.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,6 +11,10 @@ namespace Quizzie.Controllers
     {
         public ActionResult Index()
         {
+
+            QuizzieDBContext context = new QuizzieDBContext();
+            var test = context.Quizs.Count();
+
             return View();
         }
 
