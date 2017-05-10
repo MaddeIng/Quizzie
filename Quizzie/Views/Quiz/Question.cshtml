@@ -10,18 +10,13 @@
     <div class="row">
         <div class="col-lg-12">
             <h3>@Model.Question</h3>
-            <p>
-                <input type="button" value="A. The Smiths" id="date-time" class="btn btn-squared-default btn-primary" />
-                <input type="button" value="B. Blondie" id="push-date-time" class="btn btn-squared-default btn-success" />
-            </p>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-12">
-            <p>
-                <input type="button" value="C. The Sparks" id="push-message" class="btn btn-squared-default btn-warning" />
-                <input type="button" value="D. Roxy Music" id="push-message" class="btn btn-squared-default btn-danger" />
-            </p>
+            
+            @foreach (var item in @Model.Answers)
+            {
+
+                <input type="button" value="@item.Answer" class="btn btn-squared-default btn-primary" />
+            }
+               
         </div>
     </div>
 </div>

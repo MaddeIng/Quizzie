@@ -17,11 +17,11 @@ namespace Quizzie.Controllers
             //QuizCreator.AddQuizCreator();
             //Quiz.AddQuiz();
             //QuizQuestion.AddQuizQuestion();
-            QuizQuestionAnswer.AddQuizQuestionAnswer();
+            //QuizQuestionAnswer.AddQuizQuestionAnswer();
 
 
-            QuizzieDBContext context = new QuizzieDBContext();
-            var test = context.Quizs.Count();
+            //QuizzieDBContext context = new QuizzieDBContext();
+            //var test = context.Quizs.Count();
 
             return View();
         }
@@ -29,8 +29,9 @@ namespace Quizzie.Controllers
         //[Route("Quiz/Question")]
         public ActionResult Question()
         {
-            //var viewModel = QuizzieDBContext.GetQuestionViewModel(1);
-            return View();
+            QuizzieDBContext qDBcontext = new QuizzieDBContext();
+            var viewModel = qDBcontext.GetQuestionViewModel(2);
+            return View(viewModel);
         }
 
     }

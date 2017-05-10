@@ -11,19 +11,21 @@ namespace Quizzie.Models.Entities
 
         public QuizQuestionVM GetQuestionViewModel(int id)
         {
-            QuizQuestionVM myQQVM = new QuizQuestionVM();
+            QuizQuestionVM myViewModel = new QuizQuestionVM();
+            QuizzieDBContext qDBcontext = new QuizzieDBContext();   //DataBasen
 
-            myQQVM.Question = "Hur många bultar finns det i Ölandsbron";
+            var question = qDBcontext.QuizQuestions
+                .FirstOrDefault(q => q.ID == id);
 
-            //myQQVM = QuizQuestions
-            //   .Where(q => q.ID == id)
-            //   .Select(q => new QuizQuestionVM
-            //   {
-            //       Question = "Hur många bultar finns det i Ölandsbron", /*q.Question,*/
 
-            //   });
+            var answers = qDBcontext.QuizQuestionAnswers
+                .Where(a => a.QuizQuestionID == id).ToList();
 
-            return myQQVM;
+
+            myViewModel.Question = question.Question;
+            myViewModel.Answers = answers;
+
+            return myViewModel;
         }
     }
 }
