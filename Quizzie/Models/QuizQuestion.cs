@@ -1,33 +1,27 @@
-namespace Quizzie.Models
-{
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 
-    [Table("QuizQuestion")]
+namespace Quizzie.Models.Entities
+{
     public partial class QuizQuestion
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public QuizQuestion()
+        public static void AddQuizQuestion()
         {
-            QuizQuestionAnswers = new HashSet<QuizQuestionAnswer>();
+            QuizzieDBContext context = new QuizzieDBContext();
+
+            var quizQuestion = new QuizQuestion
+            {
+                QuizID = 3,
+                Question = "Vad är Gustav Dalén känd för ?",
+                ImageLink = "/img/img0_0.jpg",
+            };
+
+            context.QuizQuestions.Add(quizQuestion);
+
+            var result = context.SaveChanges();
+
         }
-
-        public int ID { get; set; }
-
-        [Required]
-        public string Question { get; set; }
-
-        [StringLength(50)]
-        public string ImageLink { get; set; }
-
-        public int QuizID { get; set; }
-
-        public virtual Quiz Quiz { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<QuizQuestionAnswer> QuizQuestionAnswers { get; set; }
     }
 }

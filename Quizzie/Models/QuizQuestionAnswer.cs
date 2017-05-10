@@ -1,23 +1,29 @@
-namespace Quizzie.Models
-{
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 
-    [Table("QuizQuestionAnswer")]
+namespace Quizzie.Models.Entities
+{
     public partial class QuizQuestionAnswer
     {
-        public int ID { get; set; }
+        public static void AddQuizQuestionAnswer()
+        {
+            QuizzieDBContext context = new QuizzieDBContext();
 
-        [Required]
-        public string Answer { get; set; }
+            var quizQuestionAnswers = new List<QuizQuestionAnswer>()
+            {
+                new QuizQuestionAnswer {QuizQuestionID = 2, Answer = "Från TV-serien Rederiet.", IsCorrect = false },
+                new QuizQuestionAnswer {QuizQuestionID = 2, Answer = "Uppfinnaren bakom AGA fyren.", IsCorrect = true },
+                new QuizQuestionAnswer {QuizQuestionID = 2, Answer = "Olof Palmes mördare", IsCorrect = false },
+                new QuizQuestionAnswer {QuizQuestionID = 2, Answer = "Olof Palmes \"bästa\" vän.", IsCorrect = false },
+            };
+            foreach (var qqa in quizQuestionAnswers)
+            {
+                context.QuizQuestionAnswers.Add(qqa);
+            }
 
-        public bool IsCorrect { get; set; }
-
-        public int QuizQuestionID { get; set; }
-
-        public virtual QuizQuestion QuizQuestion { get; set; }
+            var result = context.SaveChanges();
+        }
     }
 }

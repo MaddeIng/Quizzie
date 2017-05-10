@@ -1,37 +1,28 @@
-namespace Quizzie.Models
-{
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 
-    [Table("Quiz")]
+namespace Quizzie.Models.Entities
+{
     public partial class Quiz
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Quiz()
+
+        public static void AddQuiz()
         {
-            QuizQuestions = new HashSet<QuizQuestion>();
-            QuizResults = new HashSet<QuizResult>();
+            QuizzieDBContext context = new QuizzieDBContext();
+
+            var quiz = new Quiz
+            {
+                Title = "testquizz",
+                AccessCode = 9999,
+                CreatedBy = 0,                
+            };
+
+            context.Quizs.Add(quiz);
+
+            var result = context.SaveChanges();
         }
 
-        public int ID { get; set; }
-
-        [Required]
-        [StringLength(50)]
-        public string Title { get; set; }
-
-        public int AccessCode { get; set; }
-
-        public int CreatedBy { get; set; }
-
-        public virtual QuizCreator QuizCreator { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<QuizQuestion> QuizQuestions { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<QuizResult> QuizResults { get; set; }
     }
 }

@@ -1,36 +1,29 @@
-namespace Quizzie.Models
-{
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
+﻿using Quizzie.Models.Entities;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 
-    [Table("QuizCreator")]
+namespace Quizzie.Models.Entities
+{
     public partial class QuizCreator
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public QuizCreator()
+        public static void AddQuizCreator()
         {
-            Quizs = new HashSet<Quiz>();
+            QuizzieDBContext context = new QuizzieDBContext();
+
+            var quizCreator = new QuizCreator
+            {
+                UserName = "fantomen",
+                email = "acme@acme.com",
+                password = "fantomen"
+            };
+
+            context.QuizCreators.Add(quizCreator);
+
+            var result = context.SaveChanges();
+
         }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int ID { get; set; }
-
-        [Required]
-        [StringLength(50)]
-        public string UserName { get; set; }
-
-        [Required]
-        [StringLength(50)]
-        public string email { get; set; }
-
-        [Required]
-        [StringLength(50)]
-        public string password { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Quiz> Quizs { get; set; }
     }
 }
