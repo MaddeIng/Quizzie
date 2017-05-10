@@ -1,10 +1,11 @@
-namespace Quizzie.Models
-{
-    using System;
-    using System.Data.Entity;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Linq;
+using System;
+using System.Data.Entity;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using Quizzie.Models.VM;
 
+namespace Quizzie.Models.Entities
+{
     public partial class QuizzieDBContext : DbContext
     {
         public QuizzieDBContext()
@@ -17,6 +18,18 @@ namespace Quizzie.Models
         public virtual DbSet<QuizQuestion> QuizQuestions { get; set; }
         public virtual DbSet<QuizQuestionAnswer> QuizQuestionAnswers { get; set; }
         public virtual DbSet<QuizResult> QuizResults { get; set; }
+
+        // Vi vill lägga denna i partial sen
+        //public QuizQuestionVM GetQuestionViewModel(int id)
+        //{
+        //    //return QuizQuestions
+        //    //    .Where(q => q.ID == id)
+        //    //    .Select(q => new QuizQuestionVM
+        //    //    {
+        //    //        Question = q.Question
+
+        //    //    });
+        //}
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
