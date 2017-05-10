@@ -1,4 +1,4 @@
-namespace Quizzie.Models
+namespace Quizzie.Models.Entities
 {
     using System;
     using System.Collections.Generic;
@@ -10,6 +10,7 @@ namespace Quizzie.Models
     public partial class QuizQuestion
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+
         public QuizQuestion()
         {
             QuizQuestionAnswers = new HashSet<QuizQuestionAnswer>();

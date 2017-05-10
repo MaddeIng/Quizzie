@@ -125,14 +125,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Quiz.cs" />
-    <Compile Include="Models\QuizCreator.cs" />
-    <Compile Include="Models\QuizQuestion.cs" />
-    <Compile Include="Models\QuizQuestionAnswer.cs" />
-    <Compile Include="Models\QuizResult.cs" />
-    <Compile Include="Models\QuizzieDB.cs" />
+    <Compile Include="Models\Entities\Quiz.cs" />
+    <Compile Include="Models\Entities\QuizCreator.cs" />
+    <Compile Include="Models\Entities\QuizQuestion.cs" />
+    <Compile Include="Models\Entities\QuizQuestionAnswer.cs" />
+    <Compile Include="Models\Entities\QuizResult.cs" />
+    <Compile Include="Models\Entities\QuizzieDBContext.cs" />
+    <Compile Include="Models\QuzzieDBContext.cs" />
     <Compile Include="Models\VM\QuizIndexVM.cs" />
-    <Compile Include="Models\VM\QuizQuestionsVM.cs" />
+    <Compile Include="Models\VM\QuizQuestionVM.cs" />
     <Compile Include="Models\VM\QuizResultsVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

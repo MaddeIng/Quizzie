@@ -1,4 +1,4 @@
-namespace Quizzie.Models
+namespace Quizzie.Models.Entities
 {
     using System;
     using System.Collections.Generic;
