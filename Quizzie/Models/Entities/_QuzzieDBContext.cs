@@ -22,7 +22,7 @@ namespace Quizzie.Models.Entities
                 .Where(a => a.QuizQuestionID == id).ToList();
 
 
-            myViewModel.Question = question.Question;
+            myViewModel.Question = question;
             myViewModel.Answers = answers;
 
             return myViewModel;

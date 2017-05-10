@@ -8,7 +8,8 @@ namespace Quizzie.Models.VM
 {
     public class QuizQuestionVM
     {
-        public string Question { get; set; }
+        //public string Question { get; set; }
+        public QuizQuestion Question { get; set; }
 
         public List<QuizQuestionAnswer> Answers { get; set; }
 
