@@ -131,6 +131,11 @@
     <Compile Include="Models\Entities\QuizQuestionAnswer.cs" />
     <Compile Include="Models\Entities\QuizResult.cs" />
     <Compile Include="Models\Entities\QuizzieDBContext.cs" />
+    <Compile Include="Models\Quiz.cs" />
+    <Compile Include="Models\QuizCreator.cs" />
+    <Compile Include="Models\QuizQuestion.cs" />
+    <Compile Include="Models\QuizQuestionAnswer.cs" />
+    <Compile Include="Models\QuzzieDBContext.cs" />
     <Compile Include="Models\Entities\_QuzzieDBContext.cs" />
     <Compile Include="Models\VM\QuizIndexVM.cs" />
     <Compile Include="Models\VM\QuizQuestionVM.cs" />
