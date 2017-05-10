@@ -140,6 +140,7 @@
     <Compile Include="Models\VM\QuizIndexVM.cs" />
     <Compile Include="Models\VM\QuizQuestionVM.cs" />
     <Compile Include="Models\VM\QuizResultsVM.cs" />
+    <Compile Include="Models\VM\QuizVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

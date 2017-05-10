@@ -6,11 +6,8 @@ using System.Web;
 
 namespace Quizzie.Models.VM
 {
-    public class QuizQuestionVM
+    public class QuizVM
     {
-        public QuizQuestion Question { get; set; }
-
-        public List<QuizQuestionAnswer> Answers { get; set; }
-
+        public Quiz quiz { get; set; }
     }
 }
