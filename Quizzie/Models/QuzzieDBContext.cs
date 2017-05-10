@@ -7,11 +7,12 @@ using System.Web;
 
 namespace Quizzie.Models.Entities
 {
-    public partial class QuzzieDBContext
+    public partial class QuzzieDBContext : DbContext
     {
 
         //public QuizQuestionVM GetQuestionViewModel(int id)
         //{
+             
         //    return QuizQuestions
         //        .Where(r => r.FoodType == id)
         //        .Select(r => new RestaurantsIndexVM

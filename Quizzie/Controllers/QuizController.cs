@@ -14,6 +14,12 @@ namespace Quizzie.Controllers
         public ActionResult Index()
         {
 
+            //QuizCreator.AddQuizCreator();
+            //Quiz.AddQuiz();
+            //QuizQuestion.AddQuizQuestion();
+            QuizQuestionAnswer.AddQuizQuestionAnswer();
+
+
             QuizzieDBContext context = new QuizzieDBContext();
             var test = context.Quizs.Count();
 
