@@ -131,7 +131,7 @@
     <Compile Include="Models\Entities\QuizQuestionAnswer.cs" />
     <Compile Include="Models\Entities\QuizResult.cs" />
     <Compile Include="Models\Entities\QuizzieDBContext.cs" />
-    <Compile Include="Models\QuzzieDBContext.cs" />
+    <Compile Include="Models\Entities\_QuzzieDBContext.cs" />
     <Compile Include="Models\VM\QuizIndexVM.cs" />
     <Compile Include="Models\VM\QuizQuestionVM.cs" />
     <Compile Include="Models\VM\QuizResultsVM.cs" />
@@ -142,7 +142,7 @@
     <Content Include="packages.config" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Quiz\Index.cshtml" />
-    <Content Include="Views\Quiz\Questions.cshtml" />
+    <Content Include="Views\Quiz\Question.cshtml" />
     <Content Include="Views\Quiz\Results.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\_ViewImports.cshtml" />

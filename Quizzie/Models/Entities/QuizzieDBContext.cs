@@ -19,18 +19,6 @@ namespace Quizzie.Models.Entities
         public virtual DbSet<QuizQuestionAnswer> QuizQuestionAnswers { get; set; }
         public virtual DbSet<QuizResult> QuizResults { get; set; }
 
-        // Vi vill lägga denna i partial sen
-        //public QuizQuestionVM GetQuestionViewModel(int id)
-        //{
-        //    //return QuizQuestions
-        //    //    .Where(q => q.ID == id)
-        //    //    .Select(q => new QuizQuestionVM
-        //    //    {
-        //    //        Question = q.Question
-
-        //    //    });
-        //}
-
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Quiz>()
