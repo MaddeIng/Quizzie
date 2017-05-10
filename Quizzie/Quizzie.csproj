@@ -103,6 +103,7 @@
     <Content Include="Content\MyStyle.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="img\img3_2.jpg" />
     <Content Include="Quizzie.sql" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
