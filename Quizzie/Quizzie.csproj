@@ -163,6 +163,7 @@
     <Compile Include="Models\QuizQuestion.cs" />
     <Compile Include="Models\QuizQuestionAnswer.cs" />
     <Compile Include="Models\Entities\_QuzzieDBContext.cs" />
+    <Compile Include="Models\VM\QuizCreateVM.cs" />
     <Compile Include="Models\VM\QuizIndexVM.cs" />
     <Compile Include="Models\VM\QuizQuestionVM.cs" />
     <Compile Include="Models\VM\QuizResultsVM.cs" />
@@ -181,6 +182,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\_ViewImports.cshtml" />
     <Content Include="Scripts\jquery-1.9.1.min.map" />
+    <Content Include="Views\Quiz\Create.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
