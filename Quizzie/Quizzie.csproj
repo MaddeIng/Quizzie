@@ -125,6 +125,7 @@
     <Content Include="Content\MyStyle.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="img\loading-spinner.svg" />
     <Content Include="img\elefant.png" />
     <Content Include="img\img3_2.jpg" />
     <Content Include="img\img3_3.jpg" />
