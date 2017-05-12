@@ -14,7 +14,11 @@ namespace Quizzie
         public void Initialize()
         {
             //Find the question to start with
-            var questionId = 2; //Chosen by fair dice roll
+            //var questionId = 2; //Chosen by fair dice roll
+
+            QuizzieDBContext context = new QuizzieDBContext();
+
+            var questionId = context.QuizQuestions.Select(q => q.ID).ElementAt(0);
 
             //Get the question
             var question = QuizQuestion.GetQuestionViewModel(questionId);
