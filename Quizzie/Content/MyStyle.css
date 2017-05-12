@@ -1,4 +1,14 @@
-﻿@import url("https://fonts.googleapis.com/css?family=Lato:400,700,400italic");
+﻿@font-face {
+	font-family: Vanilla;
+	src: url('../fonts/Vanilla.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: glyphicons-halflings-regular;
+	src: url('../fonts/glyphicons-halflings-regular.eot'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.woff');
+}
+
+@import url("https://fonts.googleapis.com/css?family=Lato:400,700,400italic");
 /*!
  * bootswatch v3.3.7
  * Homepage: http://bootswatch.com
@@ -19,13 +29,26 @@ html {
 }
 
 body {
-    margin: 0;
+    margin-top: 20px;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.header {
+    font-family: Vanilla;
+    color: rebeccapurple;
+    margin-top: 0;
+    margin-bottom: 50px;
 }
 
 .correctButton {
-    background-color : forestgreen;
+    background-color: forestgreen;
 }
 
+.questionImage {
+    max-width: 50%
+}
 
 article,
 aside,

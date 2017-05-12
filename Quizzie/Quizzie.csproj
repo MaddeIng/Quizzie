@@ -125,6 +125,7 @@
     <Content Include="Content\MyStyle.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="img\elefant.png" />
     <Content Include="img\img3_2.jpg" />
     <Content Include="Quizzie.sql" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -135,6 +136,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="fonts\Vanilla.ttf" />
     <None Include="Properties\PublishProfiles\Quizzie - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
