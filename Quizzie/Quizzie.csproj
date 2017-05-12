@@ -127,6 +127,9 @@
     <Content Include="Global.asax" />
     <Content Include="img\elefant.png" />
     <Content Include="img\img3_2.jpg" />
+    <Content Include="img\img3_3.jpg" />
+    <Content Include="img\img3_6.jpg" />
+    <Content Include="img\img3_7.jpg" />
     <Content Include="Quizzie.sql" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -141,11 +144,12 @@
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\Question.js" />
+    <Content Include="Scripts\Question_old.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
     <Content Include="Scripts\jquery.signalR-2.2.2.js" />
     <Content Include="Scripts\jquery.signalR-2.2.2.min.js" />
+    <Content Include="Scripts\Question.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -164,7 +168,6 @@
     <Compile Include="Models\QuizCreator.cs" />
     <Compile Include="Models\QuizQuestion.cs" />
     <Compile Include="Models\QuizQuestionAnswer.cs" />
-    <Compile Include="Models\Entities\_QuzzieDBContext.cs" />
     <Compile Include="Models\VM\QuizCreateVM.cs" />
     <Compile Include="Models\VM\QuizIndexVM.cs" />
     <Compile Include="Models\VM\QuizQuestionVM.cs" />
@@ -179,11 +182,13 @@
     <Content Include="packages.config" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Quiz\Index.cshtml" />
-    <Content Include="Views\Quiz\Question.cshtml" />
+    <Content Include="Views\Quiz\Question_Razor.cshtml" />
     <Content Include="Views\Quiz\Results.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\_ViewImports.cshtml" />
     <Content Include="Scripts\jquery-1.9.1.min.map" />
+    <Content Include="Views\Quiz\Question_old.cshtml" />
+    <Content Include="Views\Quiz\Question.cshtml" />
     <Content Include="Views\Quiz\Create.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

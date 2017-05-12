@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -15,7 +16,7 @@ namespace Quizzie.Models.Entities
             var context = new QuizzieDBContext();
 
             var result = context.Quizs
-                .SingleOrDefault(q => q.ID == id);
+                .SingleOrDefault(q => q.ID == id);            
 
             return result;
         }

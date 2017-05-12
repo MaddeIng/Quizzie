@@ -12,7 +12,7 @@ namespace Quizzie.Models.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public QuizCreator()
         {
-            Quizs = new HashSet<Quiz>();
+            //Quizs = new HashSet<Quiz>();
         }
 
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
