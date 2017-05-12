@@ -12,28 +12,31 @@ namespace Quizzie
     public class QuizHub : Hub
     {
 
-        static int currentQuestion = 0;
-        static int questionID;
         static int noOfQuestions;
         static QuizzieDBContext context = new QuizzieDBContext();
 
-        public void Initialize()
+        public void Initialize(string name)
         {
+            Clients.Caller.Name = name;
+            Clients.Caller.CurrentQuestion = 0;
+
             noOfQuestions = context.QuizQuestions.Count();
-            GetCurrentQuestionId();
+
+            var quizQuestionID = GetQuestionFromId((int)Clients.Caller.CurrentQuestion);
 
             //Get the question
-            var question = QuizQuestion.GetQuestionViewModel(questionID);
+            var question = QuizQuestion.GetQuestionViewModel(quizQuestionID);
 
             SetQuestion(Clients.Caller, question);
         }
 
-        private static void GetCurrentQuestionId()
+        private static int GetQuestionFromId(int questionID)
         {
-            questionID = context
+            var result = context
                 .QuizQuestions.Select(q => q.ID)
                 .ToList()
-                .ElementAt(currentQuestion);
+                .ElementAt(questionID);
+            return result;
         }
 
         public string GetQuiz()
@@ -53,19 +56,19 @@ namespace Quizzie
 
         public bool IsCorrect(int quizQuestionAnswerID)
         {
-            QuizzieDBContext context = new QuizzieDBContext();
+            var quizQuestionID = 0;
 
             var isCorrect = context.QuizQuestionAnswers
                 .SingleOrDefault(a => a.ID == quizQuestionAnswerID)
                 .IsCorrect;
 
-            if (currentQuestion < noOfQuestions-1)
+            if (Clients.Caller.CurrentQuestion < noOfQuestions-1)
             {
-                currentQuestion++;
-                GetCurrentQuestionId();
+                Clients.Caller.CurrentQuestion++;
+                quizQuestionID = GetQuestionFromId((int)Clients.Caller.CurrentQuestion);
             }
 
-            DelayedChangeQuestion(Clients.Caller, QuizQuestion.GetQuestionViewModel(questionID));
+            DelayedChangeQuestion(Clients.Caller, QuizQuestion.GetQuestionViewModel(quizQuestionID));
 
             return isCorrect;
         }
