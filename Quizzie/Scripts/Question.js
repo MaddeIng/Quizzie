@@ -54,7 +54,7 @@
         .done(function () {
             console.log("Hub started!");
             // Tell the server to initialize us.
-            quizHub.server.initialize();
+            quizHub.server.initialize("Hej");
 
             //Hanterar klick på svarsknappar och hämtar svar (true/false) från databas 
             $("input").click();
