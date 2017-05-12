@@ -79,7 +79,7 @@ namespace Quizzie
             // Make the answers serializable
             var answers = question.Answers.Select(a => new { Answer = a.Answer, ID = a.ID }).ToList();
 
-            var _question = new { Question = question.Question.Question, ImageLink = question.Question.ImageLink };
+            var _question = new { Question = question.Question?.Question, ImageLink = question.Question?.ImageLink };
 
             // Send the answers to the caller of this function
             Clients.Caller.setQuestion(_question, answers);
