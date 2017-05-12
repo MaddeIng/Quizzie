@@ -12,13 +12,13 @@
     </div>
     <div class="row">
         <div class="col-lg-12">
-            <div id="loading">
-                Loading!
-            </div>
-            <div id="currentQuestion" hidden>
-                <h3 id="question"></h3>
-                <div id="answers"></div>
-            </div>
+            <h3>@Model.Question.Question</h3>
+
+            @foreach (var item in @Model.Answers)
+            {
+
+                <input type="button" id="@item.ID" value="@item.Answer" class="btn btn-info"/>
+            }
 
         </div>
     </div>
@@ -30,3 +30,15 @@
     <script src='/signalr/js'></script>
     <script src="~/Scripts/Question.js"></script>
 }
+@*<style>
+        .btn-squared-default {
+            width: 200px !important;
+            height: 100px !important;
+            font-size: 18px;
+        }
+
+            .btn-squared-default:hover {
+                border: 3px solid white;
+                font-weight: 300;
+            }
+    </style>*@
