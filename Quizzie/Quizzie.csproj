@@ -126,6 +126,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="img\img3_2.jpg" />
+    <Content Include="img\img3_3.jpg" />
+    <Content Include="img\img3_6.jpg" />
+    <Content Include="img\img3_7.jpg" />
     <Content Include="Quizzie.sql" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -163,7 +166,6 @@
     <Compile Include="Models\QuizCreator.cs" />
     <Compile Include="Models\QuizQuestion.cs" />
     <Compile Include="Models\QuizQuestionAnswer.cs" />
-    <Compile Include="Models\Entities\_QuzzieDBContext.cs" />
     <Compile Include="Models\VM\QuizCreateVM.cs" />
     <Compile Include="Models\VM\QuizIndexVM.cs" />
     <Compile Include="Models\VM\QuizQuestionVM.cs" />

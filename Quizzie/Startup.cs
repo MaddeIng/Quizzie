@@ -1,5 +1,6 @@
 ﻿using Microsoft.Owin;
 using Owin;
+using Quizzie.Models.Entities;
 
 [assembly: OwinStartupAttribute(typeof(Quizzie.Startup))]
 namespace Quizzie
@@ -10,6 +11,9 @@ namespace Quizzie
         {
             app.MapSignalR();
             //ConfigureAuth(app);
+
+            //QuizQuestion.AddQuizQuestion();
+            //QuizQuestionAnswer.AddQuizQuestionAnswer();
         }
     }
 }

@@ -11,16 +11,22 @@ namespace Quizzie
 {
     public class QuizHub : Hub
     {
+
+        static int currentQuestion = 0;
+        static int questionId;
         public void Initialize()
         {
-            //Find the question to start with
-            var questionId = 2; //Chosen by fair dice roll
+            QuizzieDBContext context = new QuizzieDBContext();
 
+            questionId = context
+                .QuizQuestions.Select(q => q.ID)
+                .ToList()
+                .ElementAt(currentQuestion);
+            
             //Get the question
             var question = QuizQuestion.GetQuestionViewModel(questionId);
 
             SetQuestion(Clients.Caller, question);
-
         }
 
         public string GetQuiz()
@@ -46,7 +52,8 @@ namespace Quizzie
                 .SingleOrDefault(a => a.ID == quizQuestionAnswerID)
                 .IsCorrect;
 
-            DelayedChangeQuestion(Clients.Caller, QuizQuestion.GetQuestionViewModel(3));
+            currentQuestion++;
+            DelayedChangeQuestion(Clients.Caller, QuizQuestion.GetQuestionViewModel(questionId));
 
             return isCorrect;
         }
@@ -57,8 +64,11 @@ namespace Quizzie
             // Make the answers serializable
             var answers = question.Answers.Select(a => new { Answer = a.Answer, ID = a.ID }).ToList();
 
+            dynamic _question = new { Question = question.Question.Question, ImageLink = question.Question.ImageLink};
+
             // Send the answers to the caller of this function
-            Clients.Caller.setQuestion(question.Question.Question, answers);
+            //Clients.Caller.setQuestion(question.Question.Question, answers);
+            Clients.Caller.setQuestion(_question, answers);
         }
 
         private void DelayedChangeQuestion(dynamic target, QuizQuestionVM question)
