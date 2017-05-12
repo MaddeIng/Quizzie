@@ -20,10 +20,9 @@ namespace Quizzie.Models.Entities
                 //QuizID = 3,
                 //Question = "Vad är Gustav Dalén känd för ?",
                 //ImageLink = "/img/img3_2.jpg",
-                // QuizID = 3,
-               
-                Question = "Vad är Reidar Dalén känd för?",
-                ImageLink = "/img/img3_3.jpg",
+                QuizID = 3,               
+                Question = "Vad är Mikael Dahlén känd för?",
+                ImageLink = "/img/img3_7.jpg",
             };
 
             context.QuizQuestions.Add(quizQuestion);

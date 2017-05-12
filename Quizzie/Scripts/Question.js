@@ -22,12 +22,16 @@
     }
 
     quizHub.client.setQuestion = function (question, answers) {
-        var $loading = $("#loading")
-        var $currentQuestion = $("#currentQuestion")
-        var $question = $("#question")
-        var $answers = $("#answers")
+        var $loading = $("#loading");
+        var $currentQuestion = $("#currentQuestion");
+        var $question = $("#question");
+        var $answers = $("#answers");
+        var $imageLink = $("#image-link");
 
-        $question.text(question);
+        console.log(question);
+
+        $imageLink.html('<img src="' + question.ImageLink +'" />')
+        $question.text(question.Question);
         $answers.empty();
         for (var i = 0; i < answers.length; i++) {
             (function (index) {
