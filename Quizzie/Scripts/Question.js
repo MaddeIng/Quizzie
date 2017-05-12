@@ -30,7 +30,7 @@
 
         console.log(question);
 
-        $imageLink.html('<img src="' + question.ImageLink +'" />')
+        $imageLink.attr("src", question.ImageLink);
         $question.text(question.Question);
         $answers.empty();
         for (var i = 0; i < answers.length; i++) {
