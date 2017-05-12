@@ -18,7 +18,7 @@ namespace Quizzie.Controllers
             //Quiz.AddQuiz();
             //QuizQuestion.AddQuizQuestion();
             //QuizQuestionAnswer.AddQuizQuestionAnswer();
-            var quiz = Quiz.GetQuiz();
+            //var quiz = Quiz.GetQuiz();
             return View();
         }
 
