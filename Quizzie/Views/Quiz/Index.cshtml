@@ -1,15 +1,26 @@
 ﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="q-head">Välkommen till Quizzie!
-    Quizzie är ett frågesportspel som riktar sig till alla 
-    som vill skapa sina egna quiz.</div>
+<div class="container text-center">
+    <h3 class="q-head">
+        Välkommen till Quizzie!
+    </h3>
 
-<div></div>
-
-
-
-@section script{
+    <input type="button" class="btn btn-info" value="Skapa Quizzie / Logga in">
     
-}
+    <h5>Mata in namn och kod för att delta i ett quiz.</h5>
+
+    <div class="row">       
+        <label><input class="form-control" id="ex2" type="text" placeholder="Namn"></label>
+</div>
+    <div class="row">       
+        <label><input class="form-control" id="ex2" type="text" placeholder="Quiz-Kod"></label>
+</div>
+    <div class="row">
+        <input type="button" class="btn btn-info" value="Starta">
+    </div>
+</div>
+@*@section script{
+
+    }*@
 
