@@ -37,5 +37,7 @@ namespace Quizzie.Models.Entities
             var result = context.SaveChanges();
         }
 
+       
+
     }
 }
