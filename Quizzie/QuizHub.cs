@@ -13,21 +13,27 @@ namespace Quizzie
     {
 
         static int currentQuestion = 0;
-        static int questionId;
+        static int questionID;
+        static int noOfQuestions;
+        static QuizzieDBContext context = new QuizzieDBContext();
 
         public void Initialize()
         {
-            QuizzieDBContext context = new QuizzieDBContext();
+            noOfQuestions = context.QuizQuestions.Count();
+            GetCurrentQuestionId();
 
-            questionId = context
+            //Get the question
+            var question = QuizQuestion.GetQuestionViewModel(questionID);
+
+            SetQuestion(Clients.Caller, question);
+        }
+
+        private static void GetCurrentQuestionId()
+        {
+            questionID = context
                 .QuizQuestions.Select(q => q.ID)
                 .ToList()
                 .ElementAt(currentQuestion);
-            
-            //Get the question
-            var question = QuizQuestion.GetQuestionViewModel(questionId);
-
-            SetQuestion(Clients.Caller, question);
         }
 
         public string GetQuiz()
@@ -53,8 +59,13 @@ namespace Quizzie
                 .SingleOrDefault(a => a.ID == quizQuestionAnswerID)
                 .IsCorrect;
 
-            currentQuestion++;
-            DelayedChangeQuestion(Clients.Caller, QuizQuestion.GetQuestionViewModel(questionId));
+            if (currentQuestion < noOfQuestions-1)
+            {
+                currentQuestion++;
+                GetCurrentQuestionId();
+            }
+
+            DelayedChangeQuestion(Clients.Caller, QuizQuestion.GetQuestionViewModel(questionID));
 
             return isCorrect;
         }
@@ -65,7 +76,7 @@ namespace Quizzie
             // Make the answers serializable
             var answers = question.Answers.Select(a => new { Answer = a.Answer, ID = a.ID }).ToList();
 
-            var _question = new { Question = question.Question.Question, ImageLink = question.Question.ImageLink};
+            var _question = new { Question = question.Question.Question, ImageLink = question.Question.ImageLink };
 
             // Send the answers to the caller of this function
             Clients.Caller.setQuestion(_question, answers);
