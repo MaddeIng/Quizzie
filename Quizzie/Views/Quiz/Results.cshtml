@@ -1,5 +1,11 @@
-﻿@{
+﻿@using Quizzie.Models.VM
+@model QuizResultsVM
+
+
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 
+<input type="text" value="@Model.Name" />
+<input type="text" value="@Model.Points av @Model.TotalPoints" />
