@@ -7,20 +7,21 @@
     </h3>
 
     <input type="button" class="btn btn-info" value="Skapa Quizzie / Logga in">
-    
+
     <h5>Mata in namn och kod för att delta i ett quiz.</h5>
 
-    <div class="row">       
-        <label><input class="form-control" id="ex2" type="text" placeholder="Namn"></label>
-</div>
-    <div class="row">       
-        <label><input class="form-control" id="ex2" type="text" placeholder="Quiz-Kod"></label>
-</div>
     <div class="row">
-        <input type="button" class="btn btn-info" value="Starta">
+        <label><input class="form-control" id="player-name" type="text" placeholder="Namn"></label>
+    </div>
+    <div class="row">
+        <label><input class="form-control" id="access-code" type="text" placeholder="Quiz-Kod"></label>
+    </div>
+    <div id="start-div" class="row">
+        <input type="button" class="btn btn-info" id="start-btn" value="Starta">
     </div>
 </div>
-@*@section script{
 
-    }*@
+@section scripts{
+    <script src="~/Scripts/index.js"></script>
+}
 

@@ -15,7 +15,7 @@ namespace Quizzie
         static int noOfQuestions;
         static QuizzieDBContext context = new QuizzieDBContext();
 
-        public void Initialize(string name)
+        public void Initialize(string name, string accessCode)
         {
             Clients.Caller.Name = name;
             Clients.Caller.CurrentQuestion = 0;
@@ -36,6 +36,7 @@ namespace Quizzie
                 .QuizQuestions.Select(q => q.ID)
                 .ToList()
                 .ElementAt(questionID);
+
             return result;
         }
 
