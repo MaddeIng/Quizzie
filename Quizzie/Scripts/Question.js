@@ -1,5 +1,6 @@
-﻿//(function () {
-    //var quizHub = $.connection.quizHub;
+﻿(function () {
+console.log("question1");
+var quizHub = $.connection.quizHub;
 
     var isCorrect;
     var point = 0;
@@ -55,17 +56,17 @@
         $currentQuestion.show();
     }
 
-    //$.connection.hub.start()
-    //    .done(function () {
-    //        console.log("Hub started!");
-    //        // Tell the server to initialize us.
-    //        quizHub.server.initialize("Hej");
+    $.connection.hub.start()
+        .done(function () {
+            console.log("Hub started!");
+            // Tell the server to initialize us.
+                $(quizHub.server.initialize("Hej","då"));
 
-    //        //Hanterar klick på svarsknappar och hämtar svar (true/false) från databas 
-    //        $("input").click();
+            //Hanterar klick på svarsknappar och hämtar svar (true/false) från databas 
+            $("input").click();
 
-    //    })
-    //    .fail(function () { alert("Fail!"); });
+        })
+        .fail(function () { alert("Fail!"); });
 
 
-//})();
+})();

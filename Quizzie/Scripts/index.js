@@ -22,7 +22,8 @@
                             $("#access-code").effect("shake").css("border-color", "red");
                         }
                         else {
-                            $("body").effect("drop");   
+                            $("body").effect("drop");
+                            window.location.href = "../quiz/question";
                         }
 
                     })
