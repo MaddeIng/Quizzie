@@ -19,6 +19,7 @@ namespace Quizzie
         {
             Clients.Caller.Name = name;
             Clients.Caller.CurrentQuestion = 0;
+            Clients.Caller.Points = 0;
 
             noOfQuestions = context.QuizQuestions.Count();
 
@@ -56,23 +57,41 @@ namespace Quizzie
 
         public bool IsCorrect(int quizQuestionAnswerID)
         {
-            var quizQuestionID = 0;
 
             var isCorrect = context.QuizQuestionAnswers
                 .SingleOrDefault(a => a.ID == quizQuestionAnswerID)
                 .IsCorrect;
 
-            if (Clients.Caller.CurrentQuestion < noOfQuestions-1)
-            {
-                Clients.Caller.CurrentQuestion++;
-                quizQuestionID = GetQuestionFromId((int)Clients.Caller.CurrentQuestion);
-            }
-
-            DelayedChangeQuestion(Clients.Caller, QuizQuestion.GetQuestionViewModel(quizQuestionID));
+            GoToNextQuestion(isCorrect);
 
             return isCorrect;
         }
 
+        private void GoToNextQuestion(bool isCorrect)
+        {
+            var quizQuestionID = 0;
+
+            if (Clients.Caller.CurrentQuestion < noOfQuestions - 1)
+            {
+                Clients.Caller.CurrentQuestion++;
+                quizQuestionID = GetQuestionFromId((int)Clients.Caller.CurrentQuestion);
+            }
+            // else show score
+
+            DelayedChangeQuestion(Clients.Caller, QuizQuestion.GetQuestionViewModel(quizQuestionID));
+
+            // Method to count points
+            int points = CalculatePoints(Clients.Caller, isCorrect);
+        }
+
+        private int CalculatePoints(dynamic caller, bool isCorrect)
+        {
+            if (isCorrect == true)
+            {
+                caller.Points++;
+            }
+            return (int)caller.Points;
+        }
 
         private void SetQuestion(dynamic target, QuizQuestionVM question)
         {

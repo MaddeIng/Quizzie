@@ -1,6 +1,8 @@
 ﻿(function () {
     var quizHub = $.connection.quizHub;
 
+    var isCorrect;
+    var point = 0;
     function handleInputClick(event) {
         quizHub.server.isCorrect($(this).data().answer)
             .done(function (result) {
@@ -8,11 +10,14 @@
                 var buttonClass = "";
                 if (result === true) {
                     buttonClass = "btn btn-success";
+
+                    point++;
                 }
                 else {
                     buttonClass = "btn btn-danger";
                 }
                 $(event.target).removeClass("btn btn-info").addClass(buttonClass);
+                $("#score").empty().append(point);
                 $("input").off("click");
             })
             .fail(function (event) {

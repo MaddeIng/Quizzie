@@ -34,5 +34,10 @@ namespace Quizzie.Controllers
             return View();
         }
 
+        public ActionResult Results()
+        {
+            return View();
+        }
+
     }
 }
