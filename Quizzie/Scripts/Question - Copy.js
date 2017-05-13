@@ -1,4 +1,4 @@
-﻿//(function () {
+﻿(function () {
     //var quizHub = $.connection.quizHub;
 
     var isCorrect;
@@ -55,17 +55,17 @@
         $currentQuestion.show();
     }
 
-    //$.connection.hub.start()
-    //    .done(function () {
-    //        console.log("Hub started!");
-    //        // Tell the server to initialize us.
-    //        quizHub.server.initialize("Hej");
+    $.connection.hub.start()
+        .done(function () {
+            console.log("Hub started!");
+            // Tell the server to initialize us.
+            quizHub.server.initialize("Hej");
 
-    //        //Hanterar klick på svarsknappar och hämtar svar (true/false) från databas 
-    //        $("input").click();
+            //Hanterar klick på svarsknappar och hämtar svar (true/false) från databas 
+            $("input").click();
 
-    //    })
-    //    .fail(function () { alert("Fail!"); });
+        })
+        .fail(function () { alert("Fail!"); });
 
 
-//})();
+})();

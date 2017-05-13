@@ -1,17 +1,33 @@
 ﻿$(document).ready(function () {
+
+    var quizHub = $.connection.quizHub;
+
     $("#start-div #start-btn").click(function () {
         console.log("start");
         var playerName = $("#player-name").val();
         var accessCode = $("#access-code").val();
 
-        console.log("Name: " + playerName + "\ Access code: " + accessCode);
 
         $.connection.hub.start()
             .done(function () {
                 console.log("Hub started!");
-                // Tell the server to initialize us.
+                
+                console.log("Index Ready:\n Name: " + playerName + "\n Access code: " + accessCode);
 
-                //quizHub.server.initialize("Hej");
+                quizHub.server.validateStartOfQuiz(playerName, accessCode)
+                    .done(function (isValid) {
+                        console.log("Quiz exists: " + isValid);
+
+                        if (isValid === false) {
+                            $("#access-code").effect("shake").css("border-color", "red");
+                        }
+                        else {
+                            $("body").effect("drop");   
+                        }
+
+                    })
+
+                //quizHub.server.initialize(playerName, accessCode);
 
                 //Hanterar klick på svarsknappar och hämtar svar (true/false) från databas 
                 //$("input").click();

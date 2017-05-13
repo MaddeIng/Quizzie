@@ -15,6 +15,23 @@ namespace Quizzie
         static int noOfQuestions;
         static QuizzieDBContext context = new QuizzieDBContext();
 
+        public bool ValidateStartOfQuiz(string name, string _accessCode)
+        {
+            bool isValid = false;
+            int accessCode = 0;
+            try
+                { accessCode = Convert.ToInt32(_accessCode); }
+            catch (Exception)
+            {
+                return isValid;
+            }
+
+            isValid = context.Quizs
+                .Any(q => q.AccessCode == accessCode);
+
+            return isValid;
+        }
+
         public void Initialize(string name, string accessCode)
         {
             Clients.Caller.Name = name;
