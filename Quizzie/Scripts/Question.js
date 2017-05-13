@@ -1,6 +1,6 @@
 ﻿(function () {
-console.log("question1");
-var quizHub = $.connection.quizHub;
+    console.log("question1");
+    var quizHub = $.connection.quizHub;
 
     var isCorrect;
     var point = 0;
@@ -26,6 +26,18 @@ var quizHub = $.connection.quizHub;
                 console.log(arguments);
             });
     }
+
+    quizHub.client.quizLengthFinished = function (word) {
+        console.log(word);
+        console.log("help");
+        window.location.href = "../quiz/results";
+    };
+
+
+        //quizHub.server.goToNextQuestion(isCorrect)
+        //    .done(function (result) {
+        //        $("#score").empty().append(point);
+        //    });
 
     quizHub.client.setQuestion = function (question, answers) {
         var $loading = $("#loading");

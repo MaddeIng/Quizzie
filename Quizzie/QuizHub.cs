@@ -20,7 +20,7 @@ namespace Quizzie
             bool isValid = false;
             int accessCode = 0;
             try
-                { accessCode = Convert.ToInt32(_accessCode); }
+            { accessCode = Convert.ToInt32(_accessCode); }
             catch (Exception)
             {
                 return isValid;
@@ -93,13 +93,24 @@ namespace Quizzie
             {
                 Clients.Caller.CurrentQuestion++;
                 quizQuestionID = GetQuestionFromId((int)Clients.Caller.CurrentQuestion);
+
+                DelayedChangeQuestion(Clients.Caller, QuizQuestion.GetQuestionViewModel(quizQuestionID));
+
+                // Method to count points
+                int points = CalculatePoints(Clients.Caller, isCorrect);
             }
-            // else show score
+            else if (Clients.Caller.CurrentQuestion == noOfQuestions - 1)
+            {
+               var finished = QuizLengthFinished();
+                Clients.Caller.quizLengthFinished(finished);
 
-            DelayedChangeQuestion(Clients.Caller, QuizQuestion.GetQuestionViewModel(quizQuestionID));
+            }
 
-            // Method to count points
-            int points = CalculatePoints(Clients.Caller, isCorrect);
+        }
+        private string QuizLengthFinished()
+        {
+
+            return "Färdig";
         }
 
         private int CalculatePoints(dynamic caller, bool isCorrect)
