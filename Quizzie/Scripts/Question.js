@@ -33,7 +33,6 @@
         window.location.href = "../quiz/results";
     };
 
-
         //quizHub.server.goToNextQuestion(isCorrect)
         //    .done(function (result) {
         //        $("#score").empty().append(point);
@@ -79,6 +78,5 @@
 
         })
         .fail(function () { alert("Fail!"); });
-
 
 })();

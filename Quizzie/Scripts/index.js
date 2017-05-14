@@ -41,3 +41,8 @@
         //quizHub.server.initialize(playerName, accessCode);
     });
 });
+
+$("#login").click(function () {
+    window.location.href = "../quiz/login";
+
+});
