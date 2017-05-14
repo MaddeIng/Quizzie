@@ -18,7 +18,7 @@
                     buttonClass = "btn btn-danger";
                 }
                 $(event.target).removeClass("btn btn-info").addClass(buttonClass);
-                $("#score").empty().append(point);
+                $("#score").empty().append("Din poäng:" +point);
                 $("input").off("click");
             })
             .fail(function (event) {
