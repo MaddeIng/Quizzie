@@ -1,0 +1,31 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container text-center">
+   
+    <h4 style="padding-bottom:10px;">Ange username och password för att logga in.</h4>
+    <h4 style="padding-bottom:10px;">Lägg till e-mail för att skapa user</h4>
+
+    <div class="row">
+        <label><input class="form-control" id="player-name" type="text" placeholder="*Username"></label>
+    </div>
+    <div class="row">
+        <label><input class="form-control" id="access-code" type="text" placeholder="*Password"></label>
+    </div>
+    <div id="start-div" class="row">
+        <input type="button" class="btn btn-info" id="start-btn" value="Login">
+    </div>
+
+    <div class="row">
+        <label><input class="form-control" id="access-code" type="text" placeholder="*e-mail"></label>
+    </div>
+    <div id="start-div" class="row">
+        <input type="button" class="btn btn-info" id="start-btn" value="*Create user">
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/Scripts/Login.js"></script>
+}
+
