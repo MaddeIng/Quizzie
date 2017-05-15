@@ -1,5 +1,6 @@
 ﻿using Quizzie.Models;
 using Quizzie.Models.Entities;
+using Quizzie.Models.VM;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -23,19 +24,51 @@ namespace Quizzie.Controllers
             return View();
         }
 
+        //[Route("Quiz/Question")]
+        //public ActionResult Question()
+        //{
+        //    var viewModel = QuizQuestion.GetQuestionViewModel(2);
+        //    return View(viewModel);
+        //}
+
+        [HttpGet]
         public ActionResult Create()
         {
+            
+            
             return View();
         }
-        //public ActionResult Login()
-        //{
-        //    return View();
-        //}
-        public ActionResult Results()
+
+        [HttpPost]
+        public ActionResult Create(QuizCreateVM viewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(viewModel);
+            }
+            
+                        
+
+            return View();
+        }
+
+        public ActionResult Login()
         {
             return View();
         }
 
+
+        public ActionResult Title()
+        {
+            return View();
+            //return RedirectToAction("Create");
+        }
+
+
+        public ActionResult Results()
+        {
+            return View();
+        }
         public ActionResult FileUpload(HttpPostedFileBase file)
         {
             if (file != null)

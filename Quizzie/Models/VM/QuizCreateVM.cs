@@ -9,12 +9,29 @@ namespace Quizzie.Models.VM
 {
     public class QuizCreateVM
     {
-        [Required]
-        public string CreateTitle { get; set; }
-               
-        public QuizQuestion CreateQuestion { get; set; }
 
-        [Required]
-        public List<QuizQuestionAnswer> CreateAnswers { get; set; }
+        [Required(ErrorMessage = "Ange en titel")]
+        public string Title { get; set; }
+
+        [Required(ErrorMessage = "Skriv in en fråga")]
+        public string Question { get; set; }
+
+        [Required(ErrorMessage = "Skriv in svar")]
+        public string Answer1 { get; set; }
+
+        [Required(ErrorMessage = "Skriv in svar")]
+        public string Answer2 { get; set; }
+
+        [Required(ErrorMessage = "Skriv in svar")]
+        public string Answer3 { get; set; }
+
+        [Required(ErrorMessage = "Skriv in svar")]
+        public string Answer4 { get; set; }
+
+        [Required(ErrorMessage = "Ett rätt svar måste väljas")]
+        public string RadioAnswer { get; set; }
+
+   
+
     }
 }

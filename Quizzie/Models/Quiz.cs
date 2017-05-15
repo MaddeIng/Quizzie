@@ -23,13 +23,13 @@ namespace Quizzie.Models.Entities
         //    return result;
         //}
 
-        public static void AddQuiz()
+        public static void AddQuiz(QuizCreateVM viewModel)
         {
             context = new QuizzieDBContext();
 
             var quiz = new Quiz
             {
-                Title = "testquizz",
+                Title = viewModel.Title,
                 AccessCode = 9999,
                 CreatedBy = 0,
             };

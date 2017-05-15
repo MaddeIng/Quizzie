@@ -1,6 +1,5 @@
 ﻿$(document).ready(function () {
 
-
     $.ajax({
         url: "/Quiz/GetPartialViewIndex", type: "GET",
         success: function (result) {
