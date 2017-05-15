@@ -131,6 +131,7 @@ namespace Quizzie
 
             // Send the answers to the caller of this function
             Clients.Caller.setQuestion(_question, answers);
+            Clients.Caller.showBodyElement();
         }
 
         private void DelayedChangeQuestion(dynamic target, QuizQuestionVM question)
@@ -140,7 +141,7 @@ namespace Quizzie
             {
                 SetQuestion(target, question);
                 timer.Dispose();
-            }, null, 1000, System.Threading.Timeout.Infinite);
+            }, null, 1000, System.Threading.Timeout.Infinite);            
         }
 
     }

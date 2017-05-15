@@ -2,14 +2,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="container text-center">
-    <h3 class="q-head">
+    @*<h3 class="q-head">
         Välkommen till Quizzie!
-    </h3>
-
-    <input type="button" id="login" class="btn btn-info" value="Skapa Quizzie / Logga in">
-
+    </h3>*@
     <h5>Mata in namn och kod för att delta i ett quiz.</h5>
-
     <div class="row">
         <label><input class="form-control" id="player-name" type="text" placeholder="Namn"></label>
     </div>
@@ -19,6 +15,9 @@
     <div id="start-div" class="row">
         <input type="button" class="btn btn-info" id="start-btn" value="Starta">
     </div>
+
+    @*<input type="button" id="login" class="btn btn-info" value="Skapa Quizzie / Logga in">*@
+    <a href="/Quiz/Create/">Skapa quiz/logga in</a>
 </div>
 
 @section scripts{
