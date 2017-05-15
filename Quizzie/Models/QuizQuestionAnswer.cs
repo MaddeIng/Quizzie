@@ -13,10 +13,11 @@ namespace Quizzie.Models.Entities
 
             var quizQuestionAnswers = new List<QuizQuestionAnswer>()
             {
-                new QuizQuestionAnswer {QuizQuestionID = 6, Answer = "Från TV-serien Rederiet.", IsCorrect = false },
-                new QuizQuestionAnswer {QuizQuestionID = 6, Answer = "Uppfinnaren bakom AGA fyren.", IsCorrect = false },
-                new QuizQuestionAnswer {QuizQuestionID = 6, Answer = "Hockeylegend", IsCorrect = true },
-                new QuizQuestionAnswer {QuizQuestionID = 6, Answer = "En smart kille", IsCorrect = false },
+                //new QuizQuestionAnswer {QuizQuestionID = 6, Answer = "Från TV-serien Rederiet.", IsCorrect = false },
+                //new QuizQuestionAnswer {QuizQuestionID = 6, Answer = "Uppfinnaren bakom AGA fyren.", IsCorrect = false },
+                //new QuizQuestionAnswer {QuizQuestionID = 6, Answer = "Hockeylegend", IsCorrect = true },
+                //new QuizQuestionAnswer {QuizQuestionID = 6, Answer = "En smart kille", IsCorrect = false },
+
                 //new QuizQuestionAnswer {QuizQuestionID = 3, Answer = "Från TV-serien Rederiet", IsCorrect = true},
                 //new QuizQuestionAnswer {QuizQuestionID = 3, Answer = "Uppfinnaren bakom AGA fyren", IsCorrect = false},
                 //new QuizQuestionAnswer {QuizQuestionID = 3, Answer = "Framgångsrik hockeyspelare", IsCorrect = false },

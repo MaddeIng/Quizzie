@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Quizzie.Models.VM;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,7 @@ namespace Quizzie.Models.Entities
 {
     public partial class Quiz
     {
+        static QuizzieDBContext context;
 
         public static Quiz GetQuiz()
         {
@@ -16,20 +18,20 @@ namespace Quizzie.Models.Entities
             var context = new QuizzieDBContext();
 
             var result = context.Quizs
-                .SingleOrDefault(q => q.ID == id);            
+                .SingleOrDefault(q => q.ID == id);
 
             return result;
         }
 
         public static void AddQuiz()
         {
-            QuizzieDBContext context = new QuizzieDBContext();
+            context = new QuizzieDBContext();
 
             var quiz = new Quiz
             {
                 Title = "testquizz",
                 AccessCode = 9999,
-                CreatedBy = 0,                
+                CreatedBy = 0,
             };
 
             context.Quizs.Add(quiz);
@@ -37,7 +39,19 @@ namespace Quizzie.Models.Entities
             var result = context.SaveChanges();
         }
 
-       
+        public static int RandomizedQuizCode()
+        {
+            Random rnd = new Random();
+            int randomCode = 0;
+
+            // Kollar om accesskod redan finns i databasen, genererar ny om så är fallet. 
+            if (context.Quizs.Any(q => q.AccessCode == randomCode)) 
+            {
+                randomCode = rnd.Next(1000, 10000); // random code between 1000 and 9999.
+            }
+
+            return randomCode;
+        }
 
     }
 }
