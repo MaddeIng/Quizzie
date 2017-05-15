@@ -68,5 +68,15 @@ namespace Quizzie.Controllers
             return RedirectToAction("Create", "Quiz");
         }
 
+        public ActionResult GetPartialViewIndex()
+        {
+            return PartialView("_Index");
+        }
+
+        public ActionResult GetPartialViewQuestion()
+        {
+            return PartialView("_Question");
+        }
+
     }
 }

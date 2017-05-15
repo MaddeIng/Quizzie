@@ -5,6 +5,7 @@ using Quizzie.Models.VM;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Web;
 
 namespace Quizzie
@@ -17,6 +18,7 @@ namespace Quizzie
 
         public bool ValidateStartOfQuiz(string name, string _accessCode)
         {
+            Console.WriteLine(Context.ConnectionId);
             bool isValid = false;
             int accessCode = 0;
             try
@@ -28,15 +30,21 @@ namespace Quizzie
 
             isValid = context.Quizs
                 .Any(q => q.AccessCode == accessCode);
-
+            if(isValid)
+            {
+                Clients.Caller.Name = name;
+                Clients.Caller.CurrentQuestion = 0;
+                Clients.Caller.Points = 0;
+            }
             return isValid;
         }
 
-        public void Initialize(string name, string accessCode)
-        {
-            Clients.Caller.Name = name;
-            Clients.Caller.CurrentQuestion = 0;
-            Clients.Caller.Points = 0;
+        public void Initialize(string accessCode)
+        {           
+
+            Groups.Add(Context.ConnectionId, accessCode);
+            Thread.Sleep(2000);
+            Clients.Group(accessCode).addChatMessage("hello "+Clients.Caller.Name + " join the game");
 
             noOfQuestions = context.QuizQuestions.Count();
 
@@ -131,7 +139,7 @@ namespace Quizzie
 
             // Send the answers to the caller of this function
             Clients.Caller.setQuestion(_question, answers);
-            Clients.Caller.showBodyElement();
+            //Clients.Caller.showBodyElement();
         }
 
         private void DelayedChangeQuestion(dynamic target, QuizQuestionVM question)

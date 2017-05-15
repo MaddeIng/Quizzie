@@ -16,9 +16,9 @@
     <AssemblyName>Quizzie</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort />
-    <IISExpressAnonymousAuthentication />
-    <IISExpressWindowsAuthentication />
+    <IISExpressSSLPort>44308</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
@@ -185,7 +185,7 @@
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Quiz\Index.cshtml" />
+    <Content Include="Views\Quiz\Index_old.cshtml" />
     <Content Include="Views\Quiz\Question_Razor.cshtml" />
     <Content Include="Views\Quiz\Results.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
@@ -195,6 +195,9 @@
     <Content Include="Views\Quiz\Question.cshtml" />
     <Content Include="Views\Quiz\Create.cshtml" />
     <Content Include="Views\Quiz\Login.cshtml" />
+    <Content Include="Views\Shared\_Index.cshtml" />
+    <Content Include="Views\Shared\_Question.cshtml" />
+    <Content Include="Views\Quiz\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
