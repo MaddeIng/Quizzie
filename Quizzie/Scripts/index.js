@@ -26,7 +26,7 @@
                             window.location.href = "../quiz/question";
                         }
 
-                    })
+                    });
 
                 //quizHub.server.initialize(playerName, accessCode);
 
