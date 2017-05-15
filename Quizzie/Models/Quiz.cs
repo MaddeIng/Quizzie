@@ -27,6 +27,8 @@ namespace Quizzie.Models.Entities
         {
             context = new QuizzieDBContext();
 
+
+
             var quiz = new Quiz
             {
                 Title = "testquizz",
