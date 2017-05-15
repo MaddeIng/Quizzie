@@ -24,11 +24,11 @@ namespace Quizzie.Controllers
         }
 
         //[Route("Quiz/Question")]
-        public ActionResult Question()
-        {
-            var viewModel = QuizQuestion.GetQuestionViewModel(2);
-            return View(viewModel);
-        }
+        //public ActionResult Question()
+        //{
+        //    var viewModel = QuizQuestion.GetQuestionViewModel(2);
+        //    return View(viewModel);
+        //}
 
         public ActionResult Create()
         {
