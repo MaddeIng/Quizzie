@@ -46,8 +46,6 @@ namespace Quizzie
             //Thread.Sleep(2000);
             Clients.Group(accessCode).addChatMessage("hello "+Clients.Caller.Name + " join the game");
 
-
-
             var code = 0;
             try
             { code = Convert.ToInt32(Clients.Caller.AccessCode); }
@@ -95,12 +93,17 @@ namespace Quizzie
                 .SingleOrDefault(a => a.ID == quizQuestionAnswerID)
                 .IsCorrect;
 
-            GoToNextQuestion(isCorrect);
+            string nr = 9999.ToString();
+            if (Clients.Caller.Name == "Admin")
+            {
+               GoToNextQuestion();
+
+            }
 
             return isCorrect;
         }
 
-        private void GoToNextQuestion(bool isCorrect)
+        private void GoToNextQuestion(/*bool isCorrect*/)
         {
             var quizQuestionID = 0;
             int noOfQuestions = 0;
@@ -118,15 +121,15 @@ namespace Quizzie
                 Clients.Caller.CurrentQuestion++;
                 quizQuestionID = GetQuestionFromId((int)Clients.Caller.CurrentQuestion, (int)Clients.Caller.QuizID);
 
-                DelayedChangeQuestion(Clients.Caller, QuizQuestion.GetQuestionViewModel(quizQuestionID));
+                DelayedChangeQuestion(Clients.All, QuizQuestion.GetQuestionViewModel(quizQuestionID));
 
                 // Method to count points
-                int points = CalculatePoints(Clients.Caller, isCorrect);
+                //int points = CalculatePoints(Clients.Caller, isCorrect);
             }
             else if (Clients.Caller.CurrentQuestion == noOfQuestions - 1)
             {
                var finished = QuizLengthFinished();
-                Clients.Caller.quizLengthFinished(finished);
+                Clients.All.quizLengthFinished(finished);
 
             }
 
@@ -154,7 +157,7 @@ namespace Quizzie
             var _question = new { Question = question.Question?.Question, ImageLink = question.Question?.ImageLink };
 
             // Send the answers to the caller of this function
-            Clients.Caller.setQuestion(_question, answers);
+            Clients.All.setQuestion(_question, answers);
             //Clients.Caller.showBodyElement();
         }
 

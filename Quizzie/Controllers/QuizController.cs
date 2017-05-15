@@ -23,27 +23,19 @@ namespace Quizzie.Controllers
             return View();
         }
 
-        //[Route("Quiz/Question")]
-        //public ActionResult Question()
-        //{
-        //    var viewModel = QuizQuestion.GetQuestionViewModel(2);
-        //    return View(viewModel);
-        //}
-
         public ActionResult Create()
         {
             return View();
         }
-        public ActionResult Login()
-        {
-            return View();
-        }
-
-
+        //public ActionResult Login()
+        //{
+        //    return View();
+        //}
         public ActionResult Results()
         {
             return View();
         }
+
         public ActionResult FileUpload(HttpPostedFileBase file)
         {
             if (file != null)

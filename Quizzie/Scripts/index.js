@@ -120,7 +120,6 @@
 
     quizHub.client.quizLengthFinished = function (word) {
         console.log(word);
-        console.log("help");
         window.location.href = "../quiz/results";
     };
 
