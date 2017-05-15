@@ -13,7 +13,6 @@ namespace Quizzie
     public class QuizHub : Hub
     {
 
-        static int noOfQuestions;
         static QuizzieDBContext context = new QuizzieDBContext();
 
         public bool ValidateStartOfQuiz(string name, string _accessCode)
@@ -33,6 +32,7 @@ namespace Quizzie
             if(isValid)
             {
                 Clients.Caller.Name = name;
+                Clients.Caller.AccessCode = accessCode;
                 Clients.Caller.CurrentQuestion = 0;
                 Clients.Caller.Points = 0;
             }
@@ -43,12 +43,33 @@ namespace Quizzie
         {           
 
             Groups.Add(Context.ConnectionId, accessCode);
-            Thread.Sleep(2000);
+            //Thread.Sleep(2000);
             Clients.Group(accessCode).addChatMessage("hello "+Clients.Caller.Name + " join the game");
 
-            noOfQuestions = context.QuizQuestions.Count();
 
-            var quizQuestionID = GetQuestionFromId((int)Clients.Caller.CurrentQuestion);
+
+            var code = 0;
+            try
+            { code = Convert.ToInt32(Clients.Caller.AccessCode); }
+            catch
+            { Console.WriteLine("Error parson accesCode in GetQuestionFromId"); }
+
+
+            var quizID = context
+                .Quizs
+                .SingleOrDefault(a => a.AccessCode == code).ID;
+
+
+            var noOfQuestions = context
+                .QuizQuestions.Where(a => a.QuizID == quizID)
+                .Select(q => q.ID)
+                .ToList()             
+                .Count();
+
+            Clients.Caller.QuizID = quizID;
+            Clients.Caller.NoOfQuestions = noOfQuestions;
+
+            var quizQuestionID = GetQuestionFromId((int)Clients.Caller.CurrentQuestion, quizID);
 
             //Get the question
             var question = QuizQuestion.GetQuestionViewModel(quizQuestionID);
@@ -56,30 +77,16 @@ namespace Quizzie
             SetQuestion(Clients.Caller, question);
         }
 
-        private static int GetQuestionFromId(int questionID)
-        {
+        private static int GetQuestionFromId(int questionID, int quizID)
+        {            
             var result = context
-                .QuizQuestions.Select(q => q.ID)
+                .QuizQuestions.Where(a => a.QuizID == quizID)
+                .Select(q => q.ID)
                 .ToList()
                 .ElementAt(questionID);
 
             return result;
         }
-
-        public string GetQuiz()
-        {
-            var quiz = Quiz.GetQuiz();
-
-            string title = quiz.Title;
-
-            var questions = QuizQuestion.GetQuestionViewModel(2);
-
-            questions.QuizTitle = title;
-
-            var json = JsonConvert.SerializeObject(questions);
-            return json;
-        }
-
 
         public bool IsCorrect(int quizQuestionAnswerID)
         {
@@ -96,11 +103,20 @@ namespace Quizzie
         private void GoToNextQuestion(bool isCorrect)
         {
             var quizQuestionID = 0;
+            int noOfQuestions = 0;
+            try
+            {
+                noOfQuestions = Convert.ToInt32(Clients.Caller.NoOfQuestions);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
 
             if (Clients.Caller.CurrentQuestion < noOfQuestions - 1)
             {
                 Clients.Caller.CurrentQuestion++;
-                quizQuestionID = GetQuestionFromId((int)Clients.Caller.CurrentQuestion);
+                quizQuestionID = GetQuestionFromId((int)Clients.Caller.CurrentQuestion, (int)Clients.Caller.QuizID);
 
                 DelayedChangeQuestion(Clients.Caller, QuizQuestion.GetQuestionViewModel(quizQuestionID));
 

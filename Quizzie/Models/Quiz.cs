@@ -11,17 +11,17 @@ namespace Quizzie.Models.Entities
     {
         static QuizzieDBContext context;
 
-        public static Quiz GetQuiz()
-        {
-            int id = 3;
+        //public static Quiz GetQuiz()
+        //{
+        //    int id = 3;
 
-            var context = new QuizzieDBContext();
+        //    var context = new QuizzieDBContext();
 
-            var result = context.Quizs
-                .SingleOrDefault(q => q.ID == id);
+        //    var result = context.Quizs
+        //        .SingleOrDefault(q => q.ID == id);
 
-            return result;
-        }
+        //    return result;
+        //}
 
         public static void AddQuiz()
         {
