@@ -37,6 +37,7 @@
 
                 <div class="col-lg-12 col-centered">
                     @Html.TextBox("Title", "", new { @class = "form-control", @placeholder = "Titel på Quiz" })
+
                 </div>
                 <div class="col-lg-12 col-centered">
                     @Html.TextArea("Question", null, new { @class = "form-control", @placeholder = "Skriv in fråga" })
@@ -47,26 +48,26 @@
                 <div class="col-xs-3">
                     @Html.TextArea("Answer1", null, new { @class = "form-control", @placeholder = "Svarsalternativ 1" })
                     <div class="radio">
-                        <label>@Html.RadioButton("RadioAnswer", "", true)Rätt svar</label>
+                        <label>@Html.RadioButton("RadioAnswer", "1")Rätt svar</label>
                     </div>
                 </div>
                 <div class="col-xs-3">
-                    @Html.TextArea("answer2", null, new { @class = "form-control", @placeholder = "Svarsalternativ 2" })
+                    @Html.TextArea("Answer2", null, new { @class = "form-control", @placeholder = "Svarsalternativ 2" })
                     <div class="radio">
-                        <label>@Html.RadioButton("RadioAnswer", "", false)Rätt svar</label>
+                        <label>@Html.RadioButton("RadioAnswer", "2")Rätt svar</label>
                     </div>
                 </div>
 
                 <div class="col-xs-3">
                     @Html.TextArea("Answer3", null, new { @class = "form-control", @placeholder = "Svarsalternativ 3" })
                     <div class="radio">
-                        <label>@Html.RadioButton("RadioAnswer", "", false)Rätt svar</label>
+                        <label>@Html.RadioButton("RadioAnswer", "3")Rätt svar</label>
                     </div>
                 </div>
                 <div class="col-xs-3">
                     @Html.TextArea("Answer4", null, new { @class = "form-control", @placeholder = "Svarsalternativ 4" })
                     <div class="radio">
-                        <label>@Html.RadioButton("RadioAnswer", "", false)Rätt svar</label>
+                        <label>@Html.RadioButton("RadioAnswer", "4")Rätt svar</label>
                     </div>
                 </div>
             </div>

@@ -34,13 +34,20 @@ namespace Quizzie.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-
+            
+            
             return View();
         }
 
         [HttpPost]
         public ActionResult Create(QuizCreateVM viewModel)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(viewModel);
+            }
+            
+                        
 
             return View();
         }
