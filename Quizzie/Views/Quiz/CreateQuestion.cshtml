@@ -4,7 +4,8 @@
 
 @model Quizzie.Models.VM.QuizCreateVM
 
-@using (Html.BeginForm("Create", "Quiz", FormMethod.Post, new { enctype = "multipart/form-data" }))
+
+@using (Html.BeginForm("CreateQuestion", "Quiz", new { quizId = 1, questionId = 2 }, FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @*<center>
             <!--<div id="bild" onclick="getFile()">click to upload a file</div>-->
@@ -35,11 +36,11 @@
                     </div>
                 </div>*@
 
-            <div class="col-lg-12 col-centered">
+            @*<div class="col-lg-12 col-centered">
                 @Html.TextBox("Title", "", new { @class = "form-control", @placeholder = "Titel på Quiz" })
                 @Html.ValidationMessage("Title", new { @class = "text-danger" })
 
-            </div>
+            </div>*@
             <div class="col-lg-12 col-centered">
                 @Html.TextBox("Question","", new { @class = "form-control", @placeholder = "Skriv in fråga" })
                 @Html.ValidationMessage("Question", new { @class = "text-danger" })
@@ -84,11 +85,11 @@
         </div>
     </div>
     <div class="container text-center">
-        <input type="submit" id="preQuestion" class="btn btn-info pull-left" value="Föregående">
-        <input type="submit" id="nextQuestion" class="btn btn-info pull-right" value="Nästa">
+        <input type="submit" name="previous" id="preQuestion" class="btn btn-info pull-left" value="Föregående">
+        <input type="submit" name="next" id="nextQuestion" class="btn btn-info pull-right" value="Nästa">
     </div>
     <div class="container text-center">
-        <input type="submit" id="done" class="btn btn-info" value="Klar">
+        <input type="submit" name="done" id="done" class="btn btn-info" value="Klar">
     </div>
 
 }

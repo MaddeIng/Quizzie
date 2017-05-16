@@ -27,7 +27,6 @@ namespace Quizzie.Models.Entities
             context.SaveChanges();
 
             return questionID;
-
         }
 
 

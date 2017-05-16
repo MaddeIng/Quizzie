@@ -30,9 +30,5 @@ namespace Quizzie.Models.VM
         public string RadioAnswer { get; set; }
 
         public int AccessCode { get; set; } = 0;
-
-        public int QuizID { get; set; } = 0;
-
-        public int QuestionID { get; set; } = 0;
     }
 }

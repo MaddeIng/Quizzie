@@ -31,14 +31,22 @@ namespace Quizzie.Controllers
         //    return View(viewModel);
         //}
 
-        [HttpGet]
-        public ActionResult Create()
+        // Creates a quiz
+        public ActionResult NewQuiz()
         {
-            return View();
+            var id = Quiz.NewQuiz();
+            return RedirectToAction(nameof(CreateQuestion), new { quizId = id, questionId = 1 });
+        }
+
+        [HttpGet]
+        public ActionResult CreateQuestion(int quizId, int questionId)
+        {
+            var viewModel = Quiz.GetQuestion(quizId, questionId);
+            return View(viewModel);
         }
 
         [HttpPost]
-        public ActionResult Create(QuizCreateVM viewModel)
+        public ActionResult CreateQuestion(int quizId, int questionId, string previous, string next, string done, QuizCreateVM viewModel)
         {
             if (!ModelState.IsValid)
             {
@@ -46,10 +54,10 @@ namespace Quizzie.Controllers
             }
             else
             {
-                Quiz.AddQuiz(viewModel);
+                Quiz.AddQuestion(viewModel, quizId, questionId);
             }
 
-            return View(nameof(Create));
+            return View(nameof(CreateQuestion));
         }
 
         public ActionResult Login()

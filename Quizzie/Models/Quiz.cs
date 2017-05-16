@@ -24,21 +24,25 @@ namespace Quizzie.Models.Entities
         //    return result;
         //}
 
-        public static void AddQuiz(QuizCreateVM viewModel)
+        public static int NewQuiz()
         {
             var quiz = new Quiz
             {
-                Title = viewModel.Title,
+                Title = "Ett nytt quiz",
                 AccessCode = RandomizedQuizCode(),
                 CreatedBy = 0,
             };
 
             context.Quizs.Add(quiz);
             context.SaveChanges();
-            
-            quiz.ID = context.Quizs.FirstOrDefault(q => q.AccessCode == quiz.AccessCode).ID;
+            return quiz.ID;
+        }
 
-            int questionID = QuizQuestion.AddQuizQuestion(quiz.ID, viewModel.Question);
+        public static void AddQuestion(QuizCreateVM viewModel, int quizId, int questionId)
+        {
+            //var quiz = context.Quizs.Find(quizId);
+
+            int questionID = QuizQuestion.AddQuizQuestion(quizId, viewModel.Question);
 
             List<QuizQuestionAnswer> answers = new List<QuizQuestionAnswer>();
 
@@ -53,6 +57,14 @@ namespace Quizzie.Models.Entities
 
             QuizQuestionAnswer.AddQuizQuestionAnswer(answers);
 
+        }
+
+        internal static QuizCreateVM GetQuestion(int quizId, int questionId)
+        {
+            // Sätt proppar från DB (om träff på frågan)
+            return new QuizCreateVM
+            {
+            };
         }
 
         public static int RandomizedQuizCode()
