@@ -11,23 +11,29 @@ namespace Quizzie.Models.Entities
         /// <summary>
         /// Adds a hard-coded question to the Db.
         /// </summary>
-        public static void AddQuizQuestion()
+        public static void AddQuizQuestion(int quizID, string question)
         {
             QuizzieDBContext context = new QuizzieDBContext();
 
             var quizQuestion = new QuizQuestion
             {
-                //QuizID = 3,
-                //Question = "Vad är Gustav Dalén känd för ?",
-                //ImageLink = "/img/img3_2.jpg",
+                QuizID = quizID,
+                Question = question
+                //ImageLink = imageLink
                 //QuizID = 3,               
                 //Question = "Vad är Mikael Dahlén känd för?",
                 //ImageLink = "/img/img3_7.jpg",
             };
 
             context.QuizQuestions.Add(quizQuestion);
+            context.SaveChanges();
 
-            var result = context.SaveChanges();
+            int currentQuestionID = context.QuizQuestions.Select(q => q.QuizID).Max();
+
+            quizQuestion.ImageLink = $"/img/img{quizID}_{currentQuestionID}.jpg";
+            quizQuestion.ID = currentQuestionID;
+            context.QuizQuestions.Add(quizQuestion);
+            context.SaveChanges();
 
         }
         

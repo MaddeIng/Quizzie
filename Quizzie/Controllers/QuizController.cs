@@ -34,8 +34,6 @@ namespace Quizzie.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            
-            
             return View();
         }
 
@@ -46,10 +44,12 @@ namespace Quizzie.Controllers
             {
                 return View(viewModel);
             }
-            
-                        
+            else
+            {
+                Quiz.AddQuiz(viewModel);
+            }
 
-            return View();
+            return View(nameof(Create));
         }
 
         public ActionResult Login()
