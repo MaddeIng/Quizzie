@@ -45,17 +45,6 @@ namespace Quizzie.Models.Entities
 
             //QuizQuestionAnswer answer = new QuizQuestionAnswer() { QuizQuestionID = 6, Answer = "Från TV-serien Rederiet.", IsCorrect = false };
 
-            answers.Add()
-
-            question.QuizID = quiz.ID;
-            question.Question = viewModel.Question;
-            question.QuizQuestionAnswers = answers;
-            question.ImageLink = $"img{quiz.ID}_{question.ID}.jpg";
-
-            context.QuizQuestions.Add(question);
-            context.SaveChanges();
-
-
         }
 
         public static int RandomizedQuizCode()
