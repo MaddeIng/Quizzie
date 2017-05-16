@@ -1,9 +1,10 @@
 ﻿$(document).ready(function () {
-
+    
     $.ajax({
         url: "/Quiz/GetPartialViewIndex", type: "GET",
         success: function (result) {
             $("#main-body").html(result);
+            $.loader.open();
             SetIndexPage();
         }
     });
@@ -11,16 +12,20 @@
     var quizHub = $.connection.quizHub;
 
     function SetIndexPage() {
+        $.loader.close();
         $("#start-div #start-btn").click(function () {
-
             var playerName = $("#player-name").val();
             var accessCode = $("#access-code").val();
+
+            $('#access-code').loader(); //Loading spinner
 
             $.connection.hub.start()
                 .done(function () {
                     quizHub.server.validateStartOfQuiz(playerName, accessCode)
                         .done(function (isValid) {
                             console.log("Quiz exists: " + isValid);
+
+                            $.loader.close(true); //Loading spinner
 
                             if (isValid === false) {
                                 $("#access-code").effect("shake").css("border-color", "red");

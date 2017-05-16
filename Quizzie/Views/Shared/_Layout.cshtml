@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width" />
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <link href="~/Content/MyStyle.css" rel="stylesheet" />
-    <title>@ViewBag.Title</title>
+    <link href="~/Content/style.css" rel="stylesheet" />
+    @*<title>@ViewBag.Title</title>*@
 </head>
 <body>
     <div class="container text-center">
@@ -15,13 +16,14 @@
 
     @RenderBody()
 
-    <script src="~/Scripts/jquery-1.9.1.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    @*<script src="~/Scripts/jquery-1.9.1.min.js"></script>*@
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="~/Scripts/jquery.signalR-2.2.2.min.js"></script>
     <script src='/signalr/js'></script>
-    <script src="~/Scripts/index.js"></script>    
-    @*<script src="~/Scripts/Question.js"></script>*@
+    <script src="~/Scripts/jquery-loader.js"></script>
+    <script src="~/Scripts/index.js"></script>
     @RenderSection("scripts", false)
 </body>
 </html>
