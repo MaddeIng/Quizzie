@@ -10,8 +10,6 @@
 
     var quizHub = $.connection.quizHub;
 
-    console.log("start");
-
     function SetIndexPage() {
         $("#start-div #start-btn").click(function () {
 
@@ -20,10 +18,6 @@
 
             $.connection.hub.start()
                 .done(function () {
-                    console.log("Hub started!");
-
-                    console.log("Index Ready:\n Name: " + playerName + "\n Access code: " + accessCode);
-
                     quizHub.server.validateStartOfQuiz(playerName, accessCode)
                         .done(function (isValid) {
                             console.log("Quiz exists: " + isValid);
@@ -108,7 +102,6 @@
                 $answers.append(btn);
             })(i);
         }
-
         $loading.hide();
         $currentQuestion.show();
         //}) 
@@ -140,4 +133,3 @@
     };
 
 });
-
