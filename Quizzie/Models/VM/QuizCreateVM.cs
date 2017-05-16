@@ -16,6 +16,7 @@ namespace Quizzie.Models.VM
         public string Question { get; set; }
 
         [Required(ErrorMessage = "Skriv in svar")]
+        //[StringLength(20,ErrorMessage = "Max 20 characters!")]
         public string Answer1 { get; set; }
 
         [Required(ErrorMessage = "Skriv in svar")]
