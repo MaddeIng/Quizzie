@@ -35,15 +35,23 @@ namespace Quizzie.Models.Entities
 
             context.Quizs.Add(quiz);
             context.SaveChanges();
-
-            QuizQuestion question = new QuizQuestion();
-            List<QuizQuestionAnswer> answers = new List<QuizQuestionAnswer>();
-
+            
             quiz.ID = context.Quizs.FirstOrDefault(q => q.AccessCode == quiz.AccessCode).ID;
 
-            QuizQuestion.AddQuizQuestion(quiz.ID, viewModel.Question);
+            int questionID = QuizQuestion.AddQuizQuestion(quiz.ID, viewModel.Question);
 
-            //QuizQuestionAnswer answer = new QuizQuestionAnswer() { QuizQuestionID = 6, Answer = "Från TV-serien Rederiet.", IsCorrect = false };
+            List<QuizQuestionAnswer> answers = new List<QuizQuestionAnswer>();
+
+            int correct = Convert.ToInt32(viewModel.RadioAnswer);
+
+            answers.Add(new QuizQuestionAnswer() { QuizQuestionID = questionID, Answer = viewModel.Answer1, IsCorrect = false });
+            answers.Add(new QuizQuestionAnswer() { QuizQuestionID = questionID, Answer = viewModel.Answer2, IsCorrect = false });
+            answers.Add(new QuizQuestionAnswer() { QuizQuestionID = questionID, Answer = viewModel.Answer3, IsCorrect = false });
+            answers.Add(new QuizQuestionAnswer() { QuizQuestionID = questionID, Answer = viewModel.Answer4, IsCorrect = false });
+
+            answers[correct-1].IsCorrect = true;
+
+            QuizQuestionAnswer.AddQuizQuestionAnswer(answers);
 
         }
 

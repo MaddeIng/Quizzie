@@ -8,10 +8,7 @@ namespace Quizzie.Models.Entities
 {
     public partial class QuizQuestion
     {
-        /// <summary>
-        /// Adds a hard-coded question to the Db.
-        /// </summary>
-        public static void AddQuizQuestion(int quizID, string question)
+        public static int AddQuizQuestion(int quizID, string question)
         {
             QuizzieDBContext context = new QuizzieDBContext();
 
@@ -19,24 +16,20 @@ namespace Quizzie.Models.Entities
             {
                 QuizID = quizID,
                 Question = question
-                //ImageLink = imageLink
-                //QuizID = 3,               
-                //Question = "Vad är Mikael Dahlén känd för?",
-                //ImageLink = "/img/img3_7.jpg",
             };
 
             context.QuizQuestions.Add(quizQuestion);
             context.SaveChanges();
 
-            int currentQuestionID = context.QuizQuestions.Select(q => q.QuizID).Max();
+            int questionID = context.QuizQuestions.Where(q => q.QuizID == quizID).FirstOrDefault(p => p.Question == question).ID;
 
-            quizQuestion.ImageLink = $"/img/img{quizID}_{currentQuestionID}.jpg";
-            quizQuestion.ID = currentQuestionID;
-            context.QuizQuestions.Add(quizQuestion);
+            quizQuestion.ImageLink = $"/img/img{quizID}_{questionID}.jpg";
             context.SaveChanges();
 
+            return questionID;
+
         }
-        
+
 
         public static QuizQuestionVM GetQuestionViewModel(int id)
         {
