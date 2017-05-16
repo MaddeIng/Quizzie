@@ -20,7 +20,6 @@ namespace Quizzie
 
     public class QuizHub : Hub
     {
-        //static List<FinalResult> finalResults = new List<FinalResult>();
         static QuizzieDBContext context = new QuizzieDBContext();
 
         public bool ValidateStartOfQuiz(string name, string _accessCode)
@@ -41,7 +40,6 @@ namespace Quizzie
             {
                 Clients.Caller.Name = name;
                 Clients.Caller.AccessCode = accessCode;
-                //Clients.Caller.Group = "G" + accessCode;
                 Clients.Caller.CurrentQuestion = 0;
                 Clients.Caller.Score = 0;
             }
@@ -138,9 +136,6 @@ namespace Quizzie
 
 
                 DelayedChangeQuestion(Clients.Group(group), QuizQuestion.GetQuestionViewModel(quizQuestionID));
-
-                // Method to count points
-                //int points = CalculatePoints(Clients.Caller, isCorrect);
             }
             else if (Clients.Caller.CurrentQuestion == noOfQuestions - 1)
             {
@@ -162,7 +157,6 @@ namespace Quizzie
             var name = Clients.Caller.Name;
 
             FinalResult _result = new FinalResult { Name = name, Score = score };
-            //finalResults.Add(_result);
             
             string accessCode = Clients.Caller.AccessCode.ToString();
 
@@ -171,11 +165,6 @@ namespace Quizzie
 
             return _result;
         }
-
-        //private int CalculatePoints(dynamic caller)
-        //{
-        //    return (int)caller.Points;
-        //}
 
         private void SetQuestion(dynamic target, QuizQuestionVM question)
         {

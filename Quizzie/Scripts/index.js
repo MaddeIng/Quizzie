@@ -59,7 +59,6 @@
         console.log("initialized: " + accessCode);
         $("body").toggle("drop");
         var isCorrect;
-        //var point = 0;
     }
 
     function handleInputClick(event) {
@@ -77,7 +76,6 @@
                     buttonClass = "btn btn-danger";
                 }
                 $(event.target).removeClass("btn btn-info").addClass(buttonClass);
-                $("#score").empty().append("Din poäng:" + point);
                 $("input").off("click");
             })
             .fail(function (event) {
@@ -116,11 +114,6 @@
         $currentQuestion.show();
     };
 
-    //quizHub.client.quizLengthFinished = function (score) {
-    //    console.log('Score: ' + score);
-    //    //window.location.href = "../quiz/results";
-    //};
-
     quizHub.client.calculateFinalScore = function () {
         $.ajax({
             url: "/Quiz/GetPartialViewResults", type: "GET",
@@ -130,8 +123,6 @@
                 quizHub.server.calculateIndividualScore()
                     .done(function (score) {
                         console.log(score);
-                        //$("#score").append(score.Name + " " + score.Score);
-                        //window.location.href = "../quiz/results"
                     })
                     .fail(function () {
                         console.log("Failed to load score");
@@ -145,10 +136,7 @@
     };
 
     quizHub.client.justDoIt = function (finalResults) {
-        //$("#score").empty();
-        //for (var i = 0; i < finalResults.length; i++) {
             $("#score").append(finalResults.Name + " " + finalResults.Score +"<br>");
-        //}
     };
     
 });

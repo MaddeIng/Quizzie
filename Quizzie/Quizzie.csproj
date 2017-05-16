@@ -184,13 +184,10 @@
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Quiz\Index_old.cshtml" />
-    <Content Include="Views\Quiz\Question_Razor.cshtml" />
     <Content Include="Views\Quiz\Results.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\_ViewImports.cshtml" />
     <Content Include="Scripts\jquery-1.9.1.min.map" />
-    <Content Include="Views\Quiz\Question_old.cshtml" />
     <Content Include="Views\Quiz\Question.cshtml" />
     <Content Include="Views\Quiz\Create.cshtml" />
     <Content Include="Views\Quiz\Login.cshtml" />

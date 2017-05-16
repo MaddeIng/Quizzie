@@ -24,13 +24,6 @@ namespace Quizzie.Controllers
             return View();
         }
 
-        //[Route("Quiz/Question")]
-        //public ActionResult Question()
-        //{
-        //    var viewModel = QuizQuestion.GetQuestionViewModel(2);
-        //    return View(viewModel);
-        //}
-
         [HttpGet]
         public ActionResult Create()
         {
