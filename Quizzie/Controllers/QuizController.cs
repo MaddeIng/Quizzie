@@ -103,5 +103,11 @@ namespace Quizzie.Controllers
             return PartialView("_Question");
         }
 
+        public ActionResult GetPartialViewResults()
+        {
+            return PartialView("_Results");
+        }
+
+        
     }
 }

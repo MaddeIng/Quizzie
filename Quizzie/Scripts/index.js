@@ -18,7 +18,6 @@
             var playerName = $("#player-name").val();
             var accessCode = $("#access-code").val();
 
-
             $.connection.hub.start()
                 .done(function () {
                     console.log("Hub started!");
@@ -43,7 +42,7 @@
                                 });
                             }
 
-                        })
+                        });
 
                     //Hanterar klick på svarsknappar och hämtar svar (true/false) från databas 
                     //$("input").click();
@@ -115,15 +114,42 @@
 
         $loading.hide();
         $currentQuestion.show();
-    }
-
-    quizHub.client.quizLengthFinished = function (word) {
-        console.log(word);
-        window.location.href = "../quiz/results";
     };
 
+    //quizHub.client.quizLengthFinished = function (score) {
+    //    console.log('Score: ' + score);
+    //    //window.location.href = "../quiz/results";
+    //};
+
+    quizHub.client.calculateFinalScore = function () {
+        $.ajax({
+            url: "/Quiz/GetPartialViewResults", type: "GET",
+            success: function (result) {
+                $("#main-body").html(result);
+
+                quizHub.server.calculateIndividualScore()
+                    .done(function (score) {
+                        console.log(score);
+                        //$("#score").append(score.Name + " " + score.Score);
+                        //window.location.href = "../quiz/results"
+                    })
+                    .fail(function () {
+                        console.log("Failed to load score");
+                    });
+            }
+        });
+
+    };
     quizHub.client.addChatMessage = function (message) {
         console.log(message);
     };
+
+    quizHub.client.justDoIt = function (finalResults) {
+        //$("#score").empty();
+        //for (var i = 0; i < finalResults.length; i++) {
+            $("#score").append(finalResults.Name + " " + finalResults.Score +"<br>");
+        //}
+    };
+    
 });
 

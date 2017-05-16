@@ -6,13 +6,21 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Web;
 
 namespace Quizzie
 {
+
+    public class FinalResult
+    {
+        public string Name { get; set; }
+        public string Score { get; set; }
+    }
+
     public class QuizHub : Hub
     {
-
+        //static List<FinalResult> finalResults = new List<FinalResult>();
         static QuizzieDBContext context = new QuizzieDBContext();
 
         public bool ValidateStartOfQuiz(string name, string _accessCode)
@@ -29,23 +37,23 @@ namespace Quizzie
 
             isValid = context.Quizs
                 .Any(q => q.AccessCode == accessCode);
-            if(isValid)
+            if (isValid)
             {
                 Clients.Caller.Name = name;
                 Clients.Caller.AccessCode = accessCode;
+                //Clients.Caller.Group = "G" + accessCode;
                 Clients.Caller.CurrentQuestion = 0;
-                Clients.Caller.Points = 0;
+                Clients.Caller.Score = 0;
             }
             return isValid;
         }
 
         public void Initialize(string accessCode)
-        {           
+        {
 
             Groups.Add(Context.ConnectionId, accessCode);
             //Thread.Sleep(2000);
-            Clients.Group(accessCode).addChatMessage("hello "+Clients.Caller.Name + " join the game");
-
+            Clients.Group(accessCode).addChatMessage("hello " + Clients.Caller.Name + " join the game");
             var code = 0;
             try
             { code = Convert.ToInt32(Clients.Caller.AccessCode); }
@@ -61,7 +69,7 @@ namespace Quizzie
             var noOfQuestions = context
                 .QuizQuestions.Where(a => a.QuizID == quizID)
                 .Select(q => q.ID)
-                .ToList()             
+                .ToList()
                 .Count();
 
             Clients.Caller.QuizID = quizID;
@@ -76,7 +84,7 @@ namespace Quizzie
         }
 
         private static int GetQuestionFromId(int questionID, int quizID)
-        {            
+        {
             var result = context
                 .QuizQuestions.Where(a => a.QuizID == quizID)
                 .Select(q => q.ID)
@@ -93,17 +101,21 @@ namespace Quizzie
                 .SingleOrDefault(a => a.ID == quizQuestionAnswerID)
                 .IsCorrect;
 
-            string nr = 9999.ToString();
+
+            if (isCorrect)
+            {
+                Clients.Caller.Score++;
+            }
+
             if (Clients.Caller.Name == "Admin")
             {
-               GoToNextQuestion();
-
+                GoToNextQuestion();
             }
 
             return isCorrect;
         }
 
-        private void GoToNextQuestion(/*bool isCorrect*/)
+        private void GoToNextQuestion()
         {
             var quizQuestionID = 0;
             int noOfQuestions = 0;
@@ -119,35 +131,51 @@ namespace Quizzie
             if (Clients.Caller.CurrentQuestion < noOfQuestions - 1)
             {
                 Clients.Caller.CurrentQuestion++;
-                quizQuestionID = GetQuestionFromId((int)Clients.Caller.CurrentQuestion, (int)Clients.Caller.QuizID);
+                string group = Clients.Caller.AccessCode.ToString();
 
-                DelayedChangeQuestion(Clients.All, QuizQuestion.GetQuestionViewModel(quizQuestionID));
+                quizQuestionID = GetQuestionFromId((int)Clients.Caller.CurrentQuestion, (int)Clients.Caller.QuizID);
+                
+
+
+                DelayedChangeQuestion(Clients.Group(group), QuizQuestion.GetQuestionViewModel(quizQuestionID));
 
                 // Method to count points
                 //int points = CalculatePoints(Clients.Caller, isCorrect);
             }
             else if (Clients.Caller.CurrentQuestion == noOfQuestions - 1)
             {
-               var finished = QuizLengthFinished();
-                Clients.All.quizLengthFinished(finished);
-
+                var finished = QuizLengthFinished();
             }
-
         }
+
         private string QuizLengthFinished()
         {
+            string group = Clients.Caller.AccessCode.ToString();
 
-            return "Färdig";
+            Clients.Group(group).CalculateFinalScore();
+            return "Finished!";
         }
 
-        private int CalculatePoints(dynamic caller, bool isCorrect)
+        public FinalResult CalculateIndividualScore()
         {
-            if (isCorrect == true)
-            {
-                caller.Points++;
-            }
-            return (int)caller.Points;
+            var score = Clients.Caller.Score.ToString();
+            var name = Clients.Caller.Name;
+
+            FinalResult _result = new FinalResult { Name = name, Score = score };
+            //finalResults.Add(_result);
+            
+            string accessCode = Clients.Caller.AccessCode.ToString();
+
+            Clients.Group(accessCode).addChatMessage(Clients.Caller.Name + Clients.Caller.Score);
+            Clients.Group(accessCode).justDoIt(_result);
+
+            return _result;
         }
+
+        //private int CalculatePoints(dynamic caller)
+        //{
+        //    return (int)caller.Points;
+        //}
 
         private void SetQuestion(dynamic target, QuizQuestionVM question)
         {
@@ -157,8 +185,8 @@ namespace Quizzie
             var _question = new { Question = question.Question?.Question, ImageLink = question.Question?.ImageLink };
 
             // Send the answers to the caller of this function
-            Clients.All.setQuestion(_question, answers);
-            //Clients.Caller.showBodyElement();
+            string group = Clients.Caller.AccessCode.ToString();
+            Clients.Group(group).setQuestion(_question, answers);
         }
 
         private void DelayedChangeQuestion(dynamic target, QuizQuestionVM question)
@@ -168,7 +196,7 @@ namespace Quizzie
             {
                 SetQuestion(target, question);
                 timer.Dispose();
-            }, null, 1000, System.Threading.Timeout.Infinite);            
+            }, null, 1, System.Threading.Timeout.Infinite);
         }
 
     }

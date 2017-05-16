@@ -170,6 +170,7 @@
     <Compile Include="Models\QuizCreator.cs" />
     <Compile Include="Models\QuizQuestion.cs" />
     <Compile Include="Models\QuizQuestionAnswer.cs" />
+    <Compile Include="Models\QuizResult.cs" />
     <Compile Include="Models\VM\QuizCreateVM.cs" />
     <Compile Include="Models\VM\QuizIndexVM.cs" />
     <Compile Include="Models\VM\QuizQuestionVM.cs" />
@@ -198,6 +199,7 @@
     <Content Include="Views\Shared\_Question.cshtml" />
     <Content Include="Views\Quiz\Index.cshtml" />
     <Content Include="Views\Quiz\Title.cshtml" />
+    <Content Include="Views\Shared\_Results.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
