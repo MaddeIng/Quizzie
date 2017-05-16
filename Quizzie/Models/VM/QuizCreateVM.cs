@@ -9,7 +9,6 @@ namespace Quizzie.Models.VM
 {
     public class QuizCreateVM
     {
-
         [Required(ErrorMessage = "Ange en titel")]
         public string Title { get; set; }
 
@@ -28,10 +27,12 @@ namespace Quizzie.Models.VM
         [Required(ErrorMessage = "Skriv in svar")]
         public string Answer4 { get; set; }
 
-        [Required(ErrorMessage = "Ett rätt svar måste väljas")]
         public string RadioAnswer { get; set; }
 
-   
+        public int AccessCode { get; set; } = 0;
 
+        public int QuizID { get; set; } = 0;
+
+        public int QuestionID { get; set; } = 0;
     }
 }
