@@ -2,8 +2,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@using (Html.BeginForm("Create", "Quiz", FormMethod.Post,
-                                                   new { enctype = "multipart/form-data" }))
+@model Quizzie.Models.VM.QuizCreateVM
+
+@using (Html.BeginForm("Create", "Quiz", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @*<center>
             <!--<div id="bild" onclick="getFile()">click to upload a file</div>-->
@@ -22,65 +23,72 @@
     @* YouTube - Part32 - Preview Image before upload jQuery *@
 
     <div class="container text-center">
-        <div class="row row-centered">
-            <div class="col-lg-12 "> @*col-centered*@
+        <div class="col-lg-12 ">
 
-                @*<div class="col-md-4 col-md-offset-4">
-                        <div id="imgPreview" style="display:none">
-                            <img class="img-responsive" id="targetImg" />
-                            <div class="catption">
-                                <a href="#" onclick="ClearPreview()"><i class="glyphicon glyphicon-trash"></i></a>
-                                <span id="description"></span>
-                            </div>
+            @*<div class="col-md-4 col-md-offset-4">
+                    <div id="imgPreview" style="display:none">
+                        <img class="img-responsive" id="targetImg" />
+                        <div class="catption">
+                            <a href="#" onclick="ClearPreview()"><i class="glyphicon glyphicon-trash"></i></a>
+                            <span id="description"></span>
                         </div>
-                    </div>*@
-
-                <div class="col-lg-12 col-centered">
-                    @Html.TextBox("Title", "", new { @class = "form-control", @placeholder = "Titel på Quiz" })
-
-                </div>
-                <div class="col-lg-12 col-centered">
-                    @Html.TextArea("Question", null, new { @class = "form-control", @placeholder = "Skriv in fråga" })
-                </div>
-
-                <br>
-
-                <div class="col-xs-3">
-                    @Html.TextArea("Answer1", null, new { @class = "form-control", @placeholder = "Svarsalternativ 1" })
-                    <div class="radio">
-                        <label>@Html.RadioButton("RadioAnswer", "1")Rätt svar</label>
                     </div>
-                </div>
-                <div class="col-xs-3">
-                    @Html.TextArea("Answer2", null, new { @class = "form-control", @placeholder = "Svarsalternativ 2" })
-                    <div class="radio">
-                        <label>@Html.RadioButton("RadioAnswer", "2")Rätt svar</label>
-                    </div>
-                </div>
+                </div>*@
 
-                <div class="col-xs-3">
-                    @Html.TextArea("Answer3", null, new { @class = "form-control", @placeholder = "Svarsalternativ 3" })
-                    <div class="radio">
-                        <label>@Html.RadioButton("RadioAnswer", "3")Rätt svar</label>
-                    </div>
+            <div class="col-lg-12 col-centered">
+                @Html.TextBox("Title", "", new { @class = "form-control", @placeholder = "Titel på Quiz" })
+                @Html.ValidationMessage("Title", new { @class = "text-danger" })
+
+            </div>
+            <div class="col-lg-12 col-centered">
+                @Html.TextBox("Question","", new { @class = "form-control", @placeholder = "Skriv in fråga" })
+                @Html.ValidationMessage("Question", new { @class = "text-danger" })
+            </div>
+
+            <br>
+
+            <div class="col-xs-3">
+                @Html.TextBox("Answer1", "", new { @class = "form-control", @placeholder = "Svarsalternativ 1" })
+                @Html.ValidationMessage("Answer1", new { @class = "text-danger" })
+
+                <div class="radio">
+                    <label>@Html.RadioButton("RadioAnswer", "1", new { @checked = true })Rätt svar</label>
                 </div>
-                <div class="col-xs-3">
-                    @Html.TextArea("Answer4", null, new { @class = "form-control", @placeholder = "Svarsalternativ 4" })
-                    <div class="radio">
-                        <label>@Html.RadioButton("RadioAnswer", "4")Rätt svar</label>
-                    </div>
+            </div>
+            <div class="col-xs-3">
+                @Html.TextBox("Answer2", "", new { @class = "form-control", @placeholder = "Svarsalternativ 2" })
+                @Html.ValidationMessage("Answer2", new { @class = "text-danger" })
+
+                <div class="radio">
+                    <label>@Html.RadioButton("RadioAnswer", "2")Rätt svar</label>
+                </div>
+            </div>
+
+            <div class="col-xs-3">
+                @Html.TextBox("Answer3", "", new { @class = "form-control", @placeholder = "Svarsalternativ 3" })
+                @Html.ValidationMessage("Answer3", new { @class = "text-danger" })
+
+                <div class="radio">
+                    <label>@Html.RadioButton("RadioAnswer", "3")Rätt svar</label>
+                </div>
+            </div>
+            <div class="col-xs-3">
+                @Html.TextBox("Answer4", "", new { @class = "form-control", @placeholder = "Svarsalternativ 4" })
+                @Html.ValidationMessage("Answer4", new { @class = "text-danger" })
+
+                <div class="radio">
+                    <label>@Html.RadioButton("RadioAnswer", "4")Rätt svar</label>
                 </div>
             </div>
         </div>
     </div>
-        <div class="container text-center">
+    <div class="container text-center">
+        <input type="submit" id="preQuestion" class="btn btn-info pull-left" value="Föregående">
+        <input type="submit" id="nextQuestion" class="btn btn-info pull-right" value="Nästa">
+    </div>
+    <div class="container text-center">
+        <input type="submit" id="done" class="btn btn-info" value="Klar">
+    </div>
 
-            <input type="submit" id="preQuestion" class="btn btn-info" style="float:left" value="Föregående">
-            <input type="submit" id="done" class="btn btn-info" value="Done">
-            <input type="submit" id="nextQuestion" class="btn btn-info" style="float:right" value="Lägg till fråga">
-        </div>
 }
 
-@section scripts {
-    <script src="~/Scripts/Create.js"></script>*
-}
