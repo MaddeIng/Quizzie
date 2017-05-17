@@ -37,7 +37,7 @@
                                         success: function (result) {
                                             $("#main-body").html(result);
                                             SetupQuiz(accessCode);
-                                        }
+                                        }   
                                     });
                                 });
                             }
@@ -59,6 +59,9 @@
     }
 
     function handleInputClick(event) {
+
+        $.loader.open({ title: "Väntar på samtliga svar" }); //TS
+
         quizHub.server.isCorrect($(this).data().answer)
             .done(function (result) {
 
@@ -82,7 +85,9 @@
     }
 
     quizHub.client.setQuestion = function (question, answers) {
-       
+
+        $.loader.close(); //TS
+
         var $loading = $("#loading");
         var $currentQuestion = $("#currentQuestion");
         var $question = $("#question");

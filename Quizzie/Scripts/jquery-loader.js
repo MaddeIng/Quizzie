@@ -19,7 +19,7 @@
             position: [0, 0, 0, 0],    //偏移设置 上左高宽
             title: '', //文字
             isOnly: true,
-            imgUrl: '~/images/loading[size].gif',
+            imgUrl: 'images/loading[size].gif',
             onShow: function () {
             },  //打开回调
             onClose: function () {
