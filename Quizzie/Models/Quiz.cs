@@ -38,7 +38,7 @@ namespace Quizzie.Models.Entities
             return quiz.ID;
         }
 
-        public static void AddQuestion(QuizCreateVM viewModel, int quizId, int questionId)
+        public static int AddQuestion(QuizCreateVM viewModel, int quizId, int questionId)
         {
             //var quiz = context.Quizs.Find(quizId);
 
@@ -57,6 +57,8 @@ namespace Quizzie.Models.Entities
 
             QuizQuestionAnswer.AddQuizQuestionAnswer(answers);
 
+            return questionID;
+
         }
 
         public static QuizCreateVM GetQuestion(int quizId, int questionId)
@@ -71,19 +73,30 @@ namespace Quizzie.Models.Entities
 
             if (quizIdExist && questionIdExist && questionBelongsToQuiz)
             {
-                List<QuizQuestionAnswer> answers = new List<QuizQuestionAnswer>();
 
-                answers = context.QuizQuestionAnswers.Where(q => q.ID == questionId).ToList();
+                var questionViewModel = QuizQuestion.GetQuestionViewModel(questionId);
 
-                viewModel.Answer1 = answers[0].Answer;
-                viewModel.Answer2 = answers[1].Answer;
-                viewModel.Answer3 = answers[2].Answer;
-                viewModel.Answer4 = answers[3].Answer;
+                viewModel.Answer1 = questionViewModel.Answers[0].Answer;
+                viewModel.Answer2 = questionViewModel.Answers[1].Answer;
+                viewModel.Answer3 = questionViewModel.Answers[2].Answer;
+                viewModel.Answer4 = questionViewModel.Answers[3].Answer;
+
+                viewModel.Question = questionViewModel.Question.Question;
+                viewModel.AccessCode = context.Quizs.FirstOrDefault(q => q.ID == quizId).AccessCode;
+
+                for (int i = 0; i < questionViewModel.Answers.Count; i++)
+                {
+                    if (questionViewModel.Answers[i].IsCorrect == true)
+                    {
+                        viewModel.RadioAnswer = (i + 1).ToString();
+                    }
+                }
 
                 return viewModel;
             }
             else
             {
+                viewModel.AccessCode = context.Quizs.FirstOrDefault(q => q.ID == quizId).AccessCode;
                 return viewModel;
             }
         }

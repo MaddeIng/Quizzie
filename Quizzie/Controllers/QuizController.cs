@@ -46,19 +46,47 @@ namespace Quizzie.Controllers
             return View(viewModel);
         }
 
+        
+
         [HttpPost]
-        public ActionResult CreateQuestion(int quizId, int questionId, string previous, string next, string done, QuizCreateVM viewModel)
+        public ActionResult CreateQuestion(int quizId, int questionId, string next, string done, QuizCreateVM viewModel, HttpPostedFileBase postedFile)
         {
+
+            if (done !=null)
+            {
+                QuizzieDBContext context = new QuizzieDBContext();
+
+                var accessCode = context.Quizs.SingleOrDefault(q => q.ID == quizId).AccessCode;
+
+                ViewBag.AccessCode = accessCode;
+                return RedirectToAction(nameof(Title), new { code = accessCode });
+            }
+
+            int _questionID= 0;
+            
             if (!ModelState.IsValid)
             {
                 return View(viewModel);
             }
             else
             {
-                Quiz.AddQuestion(viewModel, quizId, questionId);
+                _questionID = Quiz.AddQuestion(viewModel, quizId, questionId);
             }
 
-            return View(nameof(CreateQuestion));
+            var imageLink = GetImageLink(_questionID);
+            
+            FileUpload(postedFile, imageLink);
+
+            return RedirectToAction(nameof(CreateQuestion), new { quizId = quizId, questionId = 1 });
+        }
+
+        private string GetImageLink(int questionID)
+        {
+            QuizzieDBContext context = new QuizzieDBContext();
+
+            var imageLink = context.QuizQuestions.SingleOrDefault(q => q.ID == questionID).ImageLink.ToString();
+
+            return imageLink;
         }
 
         public ActionResult Login()
@@ -66,11 +94,10 @@ namespace Quizzie.Controllers
             return View();
         }
 
-
-        public ActionResult Title()
+        public ActionResult Title(int code)
         {
+            ViewBag.AccessCode = code;
             return View();
-            //return RedirectToAction("Create");
         }
 
 
@@ -78,14 +105,13 @@ namespace Quizzie.Controllers
         {
             return View();
         }
-        public ActionResult FileUpload(HttpPostedFileBase file)
+
+        public void FileUpload(HttpPostedFileBase file, string imageLink)
         {
             if (file != null)
             {
-                string pic = System.IO.Path.GetFileName(file.FileName);
-                string path = System.IO.Path.Combine(
-                                       Server.MapPath("~/img"), pic);
-                // file is uploaded
+                string pic = Path.GetFileName(file.FileName);
+                string path = Server.MapPath("~" + imageLink);
                 file.SaveAs(path);
 
                 // save the image path path to the database or you can send image 
@@ -98,8 +124,7 @@ namespace Quizzie.Controllers
                 }
 
             }
-            // after successfully uploading redirect the user
-            return RedirectToAction("Create", "Quiz");
+
         }
 
         public ActionResult GetPartialViewIndex()
@@ -117,6 +142,6 @@ namespace Quizzie.Controllers
             return PartialView("_Results");
         }
 
-        
+
     }
 }

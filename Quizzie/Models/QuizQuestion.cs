@@ -41,8 +41,7 @@ namespace Quizzie.Models.Entities
 
             var answers = qDBcontext.QuizQuestionAnswers
                 .Where(a => a.QuizQuestionID == id).ToList();
-
-
+                        
             myViewModel.Question = question;
             myViewModel.Answers = answers;
 
