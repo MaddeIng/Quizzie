@@ -82,66 +82,30 @@
     }
 
     quizHub.client.setQuestion = function (question, answers) {
-
+       
         var $loading = $("#loading");
         var $currentQuestion = $("#currentQuestion");
         var $question = $("#question");
         var $answers = $("#answers");
         var $imageLink = $("#image-link");
         var $questionBody = $("#question-body");
-        var $firstId = $("#firstId");
-        var $secondId = $("#secondId");
-        var $thirdId = $("#thirdId");
-        var $fourthId = $("#fourthId");
-        
 
+        
         //$currentQuestion.toggle("drop", function () {
 
         $imageLink.attr("src", question.ImageLink);
         $question.text(question.Question);
-        //$answers.empty();
-        $firstId.append("<input type='button' id='one' class='btn btn-sofia'/>");
-        $firstId.append("<input type='button' id='two' class='btn btn-sofia'/>");
-        $thirdId.append("<input type='button' id='three' class='btn btn-sofia'/>");
-        $thirdId.append("<input type='button' id='four' class='btn btn-sofia'/>");
-        $("#one").val(answers[0].Answer)
-        $("#two").val(answers[1].Answer)
-        $("#three").val(answers[2].Answer)
-        $("#four").val(answers[3].Answer)
+        
+        $("#one").val(answers[0].Answer).attr("data-answer", answers[0].ID).removeClass("btn btn-success").removeClass("btn btn-danger").addClass("btn btn-info");
+        $("#two").val(answers[1].Answer).attr("data-answer", answers[1].ID).removeClass("btn btn-success").removeClass("btn btn-danger").addClass("btn btn-info");
+        $("#three").val(answers[2].Answer).attr("data-answer", answers[2].ID).removeClass("btn btn-success").removeClass("btn btn-danger").addClass("btn btn-info");
+        $("#four").val(answers[3].Answer).attr("data-answer", answers[3].ID).removeClass("btn btn-success").removeClass("btn btn-danger").addClass("btn btn-info");
+        $(".btn").on("click", handleInputClick);
 
-        //for (var i = 0; i < answers.length; i++) {
-        //    (function (index) {
-        //        var btn = $("<input/>", {
-        //            type: 'button',
-        //            id: +i,
-        //            class: 'btn btn-sofia',
-        //            value: answers[index].Answer,
-        //            click: handleInputClick,
-        //            "data-answer": answers[index].ID
-        //    });
-        //        $answers.append(btn);
-
-        //})(i);
-        //}
         $loading.hide();
         $currentQuestion.show();
         //}) 
     };
-
-    //$answers.append("<div>" + Row + "</div>");
-    //$answers.append("<div>" + Row + "</div>");
-    //$("div").addClass("row");
-
-    //$answers.append("<div>Row</div>");
-
-    //<div class="row">
-    //    <div id="0" class="col-lg-6"></div>
-    //    <div id="1" class="col-lg-6"></div>
-    //</div>
-    //    <div class="row">
-    //        <div id="2" class="col-lg-6"></div>
-    //        <div id="3" class="col-lg-6"></div>
-    //    </div>
 
     quizHub.client.calculateFinalScore = function () {
         $.ajax({

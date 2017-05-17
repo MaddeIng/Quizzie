@@ -3,10 +3,10 @@
     font-family: Vanilla;
     src: url('../fonts/Vanilla.ttf') format('truetype');
 }
-@font-face {
+/*@font-face {
     font-family: 'Baloo-Regular';
     src: url('../fonts/Baloo-Regular.ttf') format('truetype');
-}
+}*/
 
 /*@font-face {
 	font-family: glyphicons-halflings-regular;
@@ -38,6 +38,7 @@ body {
     margin-bottom: 0;
     margin-left: 0;
     margin-right: 0;
+    font-family: 'Segoe UI';
 }
 
 .header {
@@ -54,7 +55,6 @@ body {
 .btn-sofia {
     color: whitesmoke;
     background-color: #BD4682;
-    font-family: 'Segoe UI' !important;
     font-size: 20px;
     font-weight: bold !important;
     margin-top: 30px !important;
@@ -64,20 +64,20 @@ body {
     margin-right: 30px !important;
 }
 
-.questionClass {
-    font-family: Baloo-Regular !important;
+/*.questionClass {
+    font-family: 'Segoe UI' !important;
 }
 
 .resultH2 {
-    font-family: Baloo-Regular !important;
-}
+    font-family: 'Segoe UI' !important;
+}*/
 
-p {
+/*p {
     font-family: 'Segoe UI' !important;
     font-size: 15px;
     margin-bottom: 30px !important;
     color: #BD4682 !important;
-}
+}*/
 
 article,
 aside,
@@ -1470,7 +1470,7 @@ html {
 }
 
 body {
-    font-family: Baloo-Regular, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: 'Segoe UI', "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 15px;
     line-height: 1.42857143;
     color: #2c3e50;
@@ -3296,6 +3296,7 @@ output {
     padding: 10px 15px;
     margin-top: 5px;
     margin-bottom: 5px;
+    font-family: 'Segoe UI';
     font-size: 15px !important;
     line-height: 1.42857143;
     color: #2c3e50;
@@ -3838,7 +3839,7 @@ select[multiple].input-lg {
     cursor: pointer;
     background-image: none;
     border: 1px solid transparent;
-    /*white-space: nowrap;*/ 
+    /*white-space: nowrap;*/
     white-space: normal;
     padding: 10px 15px;
     font-size: 15px;
