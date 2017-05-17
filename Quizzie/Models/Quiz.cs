@@ -53,32 +53,59 @@ namespace Quizzie.Models.Entities
             answers.Add(new QuizQuestionAnswer() { QuizQuestionID = questionID, Answer = viewModel.Answer3, IsCorrect = false });
             answers.Add(new QuizQuestionAnswer() { QuizQuestionID = questionID, Answer = viewModel.Answer4, IsCorrect = false });
 
-            answers[correct-1].IsCorrect = true;
+            answers[correct - 1].IsCorrect = true;
 
             QuizQuestionAnswer.AddQuizQuestionAnswer(answers);
 
         }
 
-        internal static QuizCreateVM GetQuestion(int quizId, int questionId)
+        public static QuizCreateVM GetQuestion(int quizId, int questionId)
         {
             // Sätt proppar från DB (om träff på frågan)
-            return new QuizCreateVM
+
+            bool quizIdExist = context.Quizs.Any(q => q.ID == quizId);
+            bool questionIdExist = context.QuizQuestions.Any(q => q.ID == questionId);
+            bool questionBelongsToQuiz = context.QuizQuestions.Any(q => q.ID == questionId && q.QuizID == quizId  );
+
+            QuizCreateVM viewModel = new QuizCreateVM();
+
+            if (quizIdExist && questionIdExist && questionBelongsToQuiz)
             {
-            };
+                List<QuizQuestionAnswer> answers = new List<QuizQuestionAnswer>();
+
+                answers = context.QuizQuestionAnswers.Where(q => q.ID == questionId).ToList();
+
+                viewModel.Answer1 = answers[0].Answer;
+                viewModel.Answer2 = answers[1].Answer;
+                viewModel.Answer3 = answers[2].Answer;
+                viewModel.Answer4 = answers[3].Answer;
+
+                return viewModel;
+            }
+            else
+            {
+                return viewModel;
+            }
         }
 
         public static int RandomizedQuizCode()
         {
-            Random rnd = new Random();
+            
             int randomCode = 0;
 
-            randomCode = rnd.Next(1000, 10000);
+            randomCode = GenerateRandomNumber();
 
             // Kollar om accesskod redan finns i databasen, genererar ny om så är fallet. 
-            while (context.Quizs.Any(q => q.AccessCode == randomCode)) 
-                randomCode = rnd.Next(1000, 10000); // random code between 1000 and 9999.
+            while (context.Quizs.Any(q => q.AccessCode == randomCode))
+                randomCode = GenerateRandomNumber(); 
 
             return randomCode;
+        }
+
+        public static int GenerateRandomNumber()
+        {
+            Random rnd = new Random();
+            return rnd.Next(1000, 10000);
         }
 
     }
