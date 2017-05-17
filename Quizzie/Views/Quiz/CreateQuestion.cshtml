@@ -4,90 +4,91 @@
 
 @model Quizzie.Models.VM.QuizCreateVM
 
-
+<div class="container text-center">
+    <img src="~/img/elefant.png" width="100" height="100" />
+    <h1 class="header">Quizzie</h1>
+</div>
 
 @using (Html.BeginForm("CreateQuestion", "Quiz", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-    <center>
-        <button id="bild" type="button" onclick="getFile()" class="btn btn-info">Lägg till bild</button>
-        <div style='height: 0px;width: 0px; overflow:hidden;'>
-            <input id="upfile" type="file" name="postedFile" value="upload" onchange="sub(this)" />
-        </div>
-    </center>
 
-    <div class="container text-center">
-        <div class="col-lg-12 ">
+ 
 
-            <div class="col-md-4 col-md-offset-4">
+
+        @*<img class="img-responsive" id="targetImg" src="#" />*@
+
+        <div class="container text-center">
+            <div class="col-lg-12">
                 <div id="imgPreview" style="display:none">
-                    <img class="img-responsive" id="targetImg" />
-                    <div class="caption">
-                        <a href="#" onclick="ClearPreview()"><i class="glyphicon glyphicon-trash"></i></a>
-                        <span id="description"></span>
+                    <img style="margin-bottom:10px" align="middle" id="targetImg" src="#" />
+                    <div id="trashCan" class="caption">
+                        <a href="#"><i class="glyphicon glyphicon-trash"></i></a>
                     </div>
                 </div>
-            </div>
-
-            @*<div class="col-lg-12 col-centered">
-                    @Html.TextBox("Title", "", new { @class = "form-control", @placeholder = "Titel på Quiz" })
-                    @Html.ValidationMessage("Title", new { @class = "text-danger" })
-
-                </div>*@
-
-            <div>
-                @*<h5>Quiz-kod: @Html.DisplayFor(model => model.AccessCode) </h5>*@
-            </div>
-
-            <div class="col-lg-12 col-centered">
-                @Html.TextBox("Question", Model.Question, new { @class = "form-control", @placeholder = "Skriv in fråga" })
-                @Html.ValidationMessage("Question", new { @class = "text-danger" })
-            </div>
-
-            <br>
-
-            <div class="col-xs-3">
-                @Html.TextBox("Answer1", Model.Answer1, new { @class = "form-control", @placeholder = "Svarsalternativ 1" })
-                @Html.ValidationMessage("Answer1", new { @class = "text-danger" })
-
-                <div class="radio">
-                    <label>@Html.RadioButton("RadioAnswer", "1", new { @checked = true })Rätt svar</label>
+                <button id="bild" type="button" onclick="getFile()" class="btn btn-info">Lägg till bild</button>
+                <div style='height: 0px;width: 0px; overflow:hidden;'>
+                    <input id="upfile" type="file" name="postedFile" value="upload" />
                 </div>
-            </div>
-            <div class="col-xs-3">
-                @Html.TextBox("Answer2", Model.Answer2, new { @class = "form-control", @placeholder = "Svarsalternativ 2" })
-                @Html.ValidationMessage("Answer2", new { @class = "text-danger" })
+                @*<div class="col-lg-12 col-centered">
+                        @Html.TextBox("Title", "", new { @class = "form-control", @placeholder = "Titel på Quiz" })
+                        @Html.ValidationMessage("Title", new { @class = "text-danger" })
 
-                <div class="radio">
-                    <label>@Html.RadioButton("RadioAnswer", "2")Rätt svar</label>
+                    </div>*@
+
+                <div>
+                    @*<h5>Quiz-kod: @Html.DisplayFor(model => model.AccessCode) </h5>*@
                 </div>
-            </div>
 
-            <div class="col-xs-3">
-                @Html.TextBox("Answer3", Model.Answer3, new { @class = "form-control", @placeholder = "Svarsalternativ 3" })
-                @Html.ValidationMessage("Answer3", new { @class = "text-danger" })
-
-                <div class="radio">
-                    <label>@Html.RadioButton("RadioAnswer", "3")Rätt svar</label>
+                <div class="col-lg-12 col-centered">
+                    @Html.TextBox("Question", Model.Question, new { @class = "form-control", @placeholder = "Skriv in fråga" })
+                    @Html.ValidationMessage("Question", new { @class = "text-danger" })
                 </div>
-            </div>
-            <div class="col-xs-3">
-                @Html.TextBox("Answer4", Model.Answer4, new { @class = "form-control", @placeholder = "Svarsalternativ 4" })
-                @Html.ValidationMessage("Answer4", new { @class = "text-danger" })
 
-                <div class="radio">
-                    <label>@Html.RadioButton("RadioAnswer", "4")Rätt svar</label>
+                <br>
+
+                <div class="col-xs-3">
+                    @Html.TextBox("Answer1", Model.Answer1, new { @class = "form-control", @placeholder = "Svarsalternativ 1" })
+                    @Html.ValidationMessage("Answer1", new { @class = "text-danger" })
+
+                    <div class="radio">
+                        <label>@Html.RadioButton("RadioAnswer", "1", new { @checked = true })Rätt svar</label>
+                    </div>
                 </div>
-            </div>
+                <div class="col-xs-3">
+                    @Html.TextBox("Answer2", Model.Answer2, new { @class = "form-control", @placeholder = "Svarsalternativ 2" })
+                    @Html.ValidationMessage("Answer2", new { @class = "text-danger" })
 
+                    <div class="radio">
+                        <label>@Html.RadioButton("RadioAnswer", "2")Rätt svar</label>
+                    </div>
+                </div>
+
+                <div class="col-xs-3">
+                    @Html.TextBox("Answer3", Model.Answer3, new { @class = "form-control", @placeholder = "Svarsalternativ 3" })
+                    @Html.ValidationMessage("Answer3", new { @class = "text-danger" })
+
+                    <div class="radio">
+                        <label>@Html.RadioButton("RadioAnswer", "3")Rätt svar</label>
+                    </div>
+                </div>
+                <div class="col-xs-3">
+                    @Html.TextBox("Answer4", Model.Answer4, new { @class = "form-control", @placeholder = "Svarsalternativ 4" })
+                    @Html.ValidationMessage("Answer4", new { @class = "text-danger" })
+
+                    <div class="radio">
+                        <label>@Html.RadioButton("RadioAnswer", "4")Rätt svar</label>
+                    </div>
+                </div>
+
+            </div>
         </div>
-    </div>
-    <div class="container text-center">
-        @*<input type="submit" name="previous" id="preQuestion" class="btn btn-info pull-left" value="Föregående">*@
-        <input type="submit" name="next" id="nextQuestion" class="btn btn-info pull-right" value="Spara fråga">
-    </div>
-    <div class="container text-center">
-        <input type="submit" name="done" id="done" class="btn btn-info" value="Avsluta">
-    </div>
+        <div class="container text-center">
+            @*<input type="submit" name="previous" id="preQuestion" class="btn btn-info pull-left" value="Föregående">*@
+            <input type="submit" name="next" id="nextQuestion" class="btn btn-info pull-right" value="Spara fråga">
+        </div>
+        <div class="container text-center">
+            <input type="submit" name="done" id="done" class="btn btn-info" value="Avsluta">
+        </div>
 
 }
 
