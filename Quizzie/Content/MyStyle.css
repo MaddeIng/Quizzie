@@ -59,6 +59,9 @@ body {
     font-weight: bold !important;
     margin-top: 30px !important;
     margin-bottom: 30px !important;
+    /*border-color: #3498db;*/
+    margin-left: 30px !important;
+    margin-right: 30px !important;
 }
 
 .questionClass {
@@ -3835,7 +3838,8 @@ select[multiple].input-lg {
     cursor: pointer;
     background-image: none;
     border: 1px solid transparent;
-    white-space: nowrap;
+    /*white-space: nowrap;*/ 
+    white-space: normal;
     padding: 10px 15px;
     font-size: 15px;
     line-height: 1.42857143;
