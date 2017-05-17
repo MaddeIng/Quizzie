@@ -5,51 +5,48 @@
 @model Quizzie.Models.VM.QuizCreateVM
 
 
-@using (Html.BeginForm("CreateQuestion", "Quiz", new { quizId = 1, questionId = 2 }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+
+@using (Html.BeginForm("CreateQuestion", "Quiz", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-    @*<center>
-            <!--<div id="bild" onclick="getFile()">click to upload a file</div>-->
-            <!-- this is your file input tag, so i hide it!-->
-            <button id="bild" type="button" onclick="getFile()" class="btn btn-info">Lägg till bild</button>
-            <!-- i used the onchange event to fire the form submission-->
-            <div style='height: 0px;width: 0px; overflow:hidden;'>
-                <input id="upfile" type="file" value="upload" onchange="sub(this)" />
-            </div>
-            <!-- here you can have file submit button or you can write a simple script to upload the file automatically-->
-            @*<input type="submit" value='submit' >
-
-        </center>*@
-
-
-    @* YouTube - Part32 - Preview Image before upload jQuery *@
+    <center>
+        <button id="bild" type="button" onclick="getFile()" class="btn btn-info">Lägg till bild</button>
+        <div style='height: 0px;width: 0px; overflow:hidden;'>
+            <input id="upfile" type="file" name="postedFile" value="upload" onchange="sub(this)" />
+        </div>
+    </center>
 
     <div class="container text-center">
         <div class="col-lg-12 ">
 
-            @*<div class="col-md-4 col-md-offset-4">
-                    <div id="imgPreview" style="display:none">
-                        <img class="img-responsive" id="targetImg" />
-                        <div class="catption">
-                            <a href="#" onclick="ClearPreview()"><i class="glyphicon glyphicon-trash"></i></a>
-                            <span id="description"></span>
-                        </div>
+            <div class="col-md-4 col-md-offset-4">
+                <div id="imgPreview" style="display:none">
+                    <img class="img-responsive" id="targetImg" />
+                    <div class="caption">
+                        <a href="#" onclick="ClearPreview()"><i class="glyphicon glyphicon-trash"></i></a>
+                        <span id="description"></span>
                     </div>
-                </div>*@
+                </div>
+            </div>
 
             @*<div class="col-lg-12 col-centered">
-                @Html.TextBox("Title", "", new { @class = "form-control", @placeholder = "Titel på Quiz" })
-                @Html.ValidationMessage("Title", new { @class = "text-danger" })
+                    @Html.TextBox("Title", "", new { @class = "form-control", @placeholder = "Titel på Quiz" })
+                    @Html.ValidationMessage("Title", new { @class = "text-danger" })
 
-            </div>*@
+                </div>*@
+
+            <div>
+                @*<h5>Quiz-kod: @Html.DisplayFor(model => model.AccessCode) </h5>*@
+            </div>
+
             <div class="col-lg-12 col-centered">
-                @Html.TextBox("Question","", new { @class = "form-control", @placeholder = "Skriv in fråga" })
+                @Html.TextBox("Question", Model.Question, new { @class = "form-control", @placeholder = "Skriv in fråga" })
                 @Html.ValidationMessage("Question", new { @class = "text-danger" })
             </div>
 
             <br>
 
             <div class="col-xs-3">
-                @Html.TextBox("Answer1", "", new { @class = "form-control", @placeholder = "Svarsalternativ 1" })
+                @Html.TextBox("Answer1", Model.Answer1, new { @class = "form-control", @placeholder = "Svarsalternativ 1" })
                 @Html.ValidationMessage("Answer1", new { @class = "text-danger" })
 
                 <div class="radio">
@@ -57,7 +54,7 @@
                 </div>
             </div>
             <div class="col-xs-3">
-                @Html.TextBox("Answer2", "", new { @class = "form-control", @placeholder = "Svarsalternativ 2" })
+                @Html.TextBox("Answer2", Model.Answer2, new { @class = "form-control", @placeholder = "Svarsalternativ 2" })
                 @Html.ValidationMessage("Answer2", new { @class = "text-danger" })
 
                 <div class="radio">
@@ -66,7 +63,7 @@
             </div>
 
             <div class="col-xs-3">
-                @Html.TextBox("Answer3", "", new { @class = "form-control", @placeholder = "Svarsalternativ 3" })
+                @Html.TextBox("Answer3", Model.Answer3, new { @class = "form-control", @placeholder = "Svarsalternativ 3" })
                 @Html.ValidationMessage("Answer3", new { @class = "text-danger" })
 
                 <div class="radio">
@@ -74,7 +71,7 @@
                 </div>
             </div>
             <div class="col-xs-3">
-                @Html.TextBox("Answer4", "", new { @class = "form-control", @placeholder = "Svarsalternativ 4" })
+                @Html.TextBox("Answer4", Model.Answer4, new { @class = "form-control", @placeholder = "Svarsalternativ 4" })
                 @Html.ValidationMessage("Answer4", new { @class = "text-danger" })
 
                 <div class="radio">
@@ -85,12 +82,15 @@
         </div>
     </div>
     <div class="container text-center">
-        <input type="submit" name="previous" id="preQuestion" class="btn btn-info pull-left" value="Föregående">
-        <input type="submit" name="next" id="nextQuestion" class="btn btn-info pull-right" value="Nästa">
+        @*<input type="submit" name="previous" id="preQuestion" class="btn btn-info pull-left" value="Föregående">*@
+        <input type="submit" name="next" id="nextQuestion" class="btn btn-info pull-right" value="Spara fråga">
     </div>
     <div class="container text-center">
-        <input type="submit" name="done" id="done" class="btn btn-info" value="Klar">
+        <input type="submit" name="done" id="done" class="btn btn-info" value="Avsluta">
     </div>
 
 }
+
+<script src="~/Scripts/jquery-1.9.1.min.js"></script>
+<script src="~/Scripts/fileupload.js"></script>
 

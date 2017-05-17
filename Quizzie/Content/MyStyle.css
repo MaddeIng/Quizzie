@@ -3,6 +3,10 @@
     font-family: Vanilla;
     src: url('../fonts/Vanilla.ttf') format('truetype');
 }
+@font-face {
+    font-family: 'Baloo-Regular';
+    src: url('../fonts/Baloo-Regular.ttf') format('truetype');
+}
 
 /*@font-face {
 	font-family: glyphicons-halflings-regular;
@@ -58,6 +62,14 @@ body {
     /*border-color: #3498db;*/
     margin-left: 30px !important;
     margin-right: 30px !important;
+}
+
+.questionClass {
+    font-family: Baloo-Regular !important;
+}
+
+.resultH2 {
+    font-family: Baloo-Regular !important;
 }
 
 p {
@@ -1458,7 +1470,7 @@ html {
 }
 
 body {
-    font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: Baloo-Regular, "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 15px;
     line-height: 1.42857143;
     color: #2c3e50;
@@ -3284,7 +3296,6 @@ output {
     padding: 10px 15px;
     margin-top: 5px;
     margin-bottom: 5px;
-    font-family: 'Segoe UI' !important;
     font-size: 15px !important;
     line-height: 1.42857143;
     color: #2c3e50;
@@ -3827,7 +3838,8 @@ select[multiple].input-lg {
     cursor: pointer;
     background-image: none;
     border: 1px solid transparent;
-    white-space: nowrap;
+    /*white-space: nowrap;*/ 
+    white-space: normal;
     padding: 10px 15px;
     font-size: 15px;
     line-height: 1.42857143;

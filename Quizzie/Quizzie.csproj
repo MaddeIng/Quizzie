@@ -147,10 +147,12 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="fonts\Vanilla.ttf" />
+    <Content Include="fonts\Baloo-Regular.ttf" />
     <None Include="Properties\PublishProfiles\Quizzie - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\fileupload.js" />
     <Content Include="Scripts\index.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
@@ -204,6 +206,7 @@
     <Content Include="Views\Quiz\Index.cshtml" />
     <Content Include="Views\Quiz\Title.cshtml" />
     <Content Include="Views\Shared\_Results.cshtml" />
+    <Content Include="Views\Quiz\Title - Copy.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
