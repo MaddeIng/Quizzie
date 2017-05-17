@@ -1,51 +1,49 @@
 ﻿$(document).ready(function () {
-
+    
     $.ajax({
         url: "/Quiz/GetPartialViewIndex", type: "GET",
         success: function (result) {
             $("#main-body").html(result);
+            $.loader.open();
             SetIndexPage();
         }
     });
 
     var quizHub = $.connection.quizHub;
 
-    console.log("start");
-
     function SetIndexPage() {
+        $.loader.close();
         $("#start-div #start-btn").click(function () {
-
             var playerName = $("#player-name").val();
             var accessCode = $("#access-code").val();
 
+            $('#access-code').loader(); //Loading spinner
+
             $.connection.hub.start()
                 .done(function () {
-                    console.log("Hub started!");
-
-                    console.log("Index Ready:\n Name: " + playerName + "\n Access code: " + accessCode);
-
                     quizHub.server.validateStartOfQuiz(playerName, accessCode)
                         .done(function (isValid) {
                             console.log("Quiz exists: " + isValid);
+
+                            $.loader.close(true); //Loading spinner
 
                             if (isValid === false) {
                                 $("#access-code").effect("shake").css("border-color", "red");
                             }
                             else {
-                                $("body").toggle("drop");
-                                $.ajax({
-                                    url: "/Quiz/GetPartialViewQuestion", type: "GET",
-                                    success: function (result) {
-                                        $("#main-body").html(result);
-                                        SetupQuiz(accessCode);
-                                    }
+                                $("body").toggle("drop", function () {
+                                    $.ajax({
+                                        url: "/Quiz/GetPartialViewQuestion", type: "GET",
+                                        success: function (result) {
+                                            $("#main-body").html(result);
+                                            SetupQuiz(accessCode);
+                                        }
+                                    });
                                 });
                             }
-
                         });
 
                     //Hanterar klick på svarsknappar och hämtar svar (true/false) från databas 
-                    //$("input").click();
                     $("#answers input").click();
 
                 })
@@ -56,7 +54,6 @@
     function SetupQuiz(accessCode) {
         quizHub.server.initialize(accessCode);
 
-        console.log("initialized: " + accessCode);
         $("body").toggle("drop");
         var isCorrect;
     }
@@ -91,8 +88,9 @@
         var $question = $("#question");
         var $answers = $("#answers");
         var $imageLink = $("#image-link");
+        var $questionBody = $("#question-body");
 
-        console.log(question);
+        //$currentQuestion.toggle("drop", function () {
 
         $imageLink.attr("src", question.ImageLink);
         $question.text(question.Question);
@@ -109,9 +107,9 @@
                 $answers.append(btn);
             })(i);
         }
-
         $loading.hide();
         $currentQuestion.show();
+        //}) 
     };
 
     quizHub.client.calculateFinalScore = function () {
@@ -136,8 +134,7 @@
     };
 
     quizHub.client.justDoIt = function (finalResults) {
-            $("#score").append(finalResults.Name + " " + finalResults.Score +"<br>");
+        $("#score").append(finalResults.Name + " " + finalResults.Score + "<br>");
     };
-    
-});
 
+});
