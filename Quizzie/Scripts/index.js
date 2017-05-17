@@ -100,7 +100,7 @@
         $("#two").val(answers[1].Answer).attr("data-answer", answers[1].ID).removeClass("btn btn-success").removeClass("btn btn-danger").addClass("btn btn-info");
         $("#three").val(answers[2].Answer).attr("data-answer", answers[2].ID).removeClass("btn btn-success").removeClass("btn btn-danger").addClass("btn btn-info");
         $("#four").val(answers[3].Answer).attr("data-answer", answers[3].ID).removeClass("btn btn-success").removeClass("btn btn-danger").addClass("btn btn-info");
-        $(".btn").on("click", handleInputClick);
+        $("input").on("click", handleInputClick);
 
         $loading.hide();
         $currentQuestion.show();
