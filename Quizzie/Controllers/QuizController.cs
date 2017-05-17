@@ -40,6 +40,7 @@ namespace Quizzie.Controllers
 
         [HttpGet]
         public ActionResult CreateQuestion(int quizId, int questionId)
+
         {
             var viewModel = Quiz.GetQuestion(quizId, questionId);
             return View(viewModel);
