@@ -39,7 +39,7 @@ body.everythingInPage {
 }
 
 .imagediv {
-    height: 400px;
+    height: 240px;
 }
 
 article,
@@ -1488,11 +1488,9 @@ img {
     border-radius: 6px;
 }
 
-/*.img-sofia {
-    border-radius: 6px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-}*/
+.img-sofia {
+    height: 240px;
+}
 
 .img-thumbnail {
     padding: 4px;
