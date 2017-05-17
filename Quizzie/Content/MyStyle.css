@@ -1,12 +1,17 @@
-﻿@font-face {
-	font-family: Vanilla;
-	src: url('../fonts/Vanilla.ttf') format('truetype');
+﻿/*Quizzie Logo font import*/
+@font-face {
+    font-family: Vanilla;
+    src: url('../fonts/Vanilla.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Baloo-Regular';
+    src: url('../fonts/Baloo-Regular.ttf') format('truetype');
 }
 
-@font-face {
+/*@font-face {
 	font-family: glyphicons-halflings-regular;
 	src: url('../fonts/glyphicons-halflings-regular.eot'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.woff');
-}
+}*/
 
 @import url("https://fonts.googleapis.com/css?family=Lato:400,700,400italic");
 /*!
@@ -23,7 +28,7 @@
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 html {
-    font-family: sans-serif;
+    font-family: 'Segoe UI';
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
 }
@@ -37,19 +42,39 @@ body {
 
 .header {
     font-family: Vanilla;
-    color: rebeccapurple;
+    color: #8C2057;
     margin-top: 0;
     margin-bottom: 50px;
-}
-
-.correctButton {
-    background-color: forestgreen;
 }
 
 .questionImage {
     max-width: 50%
 }
 
+.btn-sofia {
+    color: whitesmoke;
+    background-color: #BD4682;
+    font-family: 'Segoe UI' !important;
+    font-size: 20px;
+    font-weight: bold !important;
+    margin-top: 30px !important;
+    margin-bottom: 30px !important;
+}
+
+.questionClass {
+    font-family: Baloo-Regular !important;
+}
+
+.resultH2 {
+    font-family: Baloo-Regular !important;
+}
+
+p {
+    font-family: 'Segoe UI' !important;
+    font-size: 15px;
+    margin-bottom: 30px !important;
+    color: #BD4682 !important;
+}
 
 article,
 aside,
@@ -87,6 +112,10 @@ template {
 
 a {
     background-color: transparent;
+    font-family: 'Segoe UI' !important;
+    font-size: 15px;
+    font-weight: bold !important;
+    color: #BD4682 !important;
 }
 
     a:active,
@@ -1438,11 +1467,11 @@ html {
 }
 
 body {
-    font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: Baloo-Regular, "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 15px;
     line-height: 1.42857143;
     color: #2c3e50;
-    background-color: #ffffff;
+    background-color: #DAFDFF;
 }
 
 input,
@@ -3264,12 +3293,12 @@ output {
     padding: 10px 15px;
     margin-top: 5px;
     margin-bottom: 5px;
-    font-size: 15px;
+    font-size: 15px !important;
     line-height: 1.42857143;
     color: #2c3e50;
-    background-color: #ffffff;
+    background-color: #f4fffe;
     background-image: none;
-    border: 1px solid #dce4ec;
+    border: 1px solid #BD4682;
     border-radius: 4px;
     -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);

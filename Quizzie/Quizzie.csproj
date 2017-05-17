@@ -147,6 +147,7 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="fonts\Vanilla.ttf" />
+    <Content Include="fonts\Baloo-Regular.ttf" />
     <None Include="Properties\PublishProfiles\Quizzie - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />

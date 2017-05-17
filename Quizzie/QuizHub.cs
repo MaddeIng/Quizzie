@@ -20,6 +20,7 @@ namespace Quizzie
 
     public class QuizHub : Hub
     {
+        static string adminConnection = "";
         static QuizzieDBContext context = new QuizzieDBContext();
 
         public bool ValidateStartOfQuiz(string name, string _accessCode)
@@ -42,16 +43,26 @@ namespace Quizzie
                 Clients.Caller.AccessCode = accessCode;
                 Clients.Caller.CurrentQuestion = 0;
                 Clients.Caller.Score = 0;
+
+                if (Clients.Caller.Name == "Admin")
+                {
+                    adminConnection = Context.ConnectionId;
+                }
             }
             return isValid;
         }
 
         public void Initialize(string accessCode)
         {
-
             Groups.Add(Context.ConnectionId, accessCode);
-            //Thread.Sleep(2000);
+
             Clients.Group(accessCode).addChatMessage("hello " + Clients.Caller.Name + " join the game");
+            if (Clients.Caller.Name != "Admin")
+            {
+                Clients.Client(adminConnection).showUsers(Clients.Caller.Name + " ");
+
+            }
+
             var code = 0;
             try
             { code = Convert.ToInt32(Clients.Caller.AccessCode); }
@@ -94,11 +105,14 @@ namespace Quizzie
 
         public bool IsCorrect(int quizQuestionAnswerID)
         {
+            if (Clients.Caller.Name != "Admin")
+            {
+                Clients.Client(adminConnection).changeAppearance(Clients.Caller.Name);
+            }
 
             var isCorrect = context.QuizQuestionAnswers
                 .SingleOrDefault(a => a.ID == quizQuestionAnswerID)
                 .IsCorrect;
-
 
             if (isCorrect)
             {
@@ -117,6 +131,11 @@ namespace Quizzie
         {
             var quizQuestionID = 0;
             int noOfQuestions = 0;
+
+
+            Clients.Client(adminConnection).removeAppearance();
+
+
             try
             {
                 noOfQuestions = Convert.ToInt32(Clients.Caller.NoOfQuestions);
@@ -132,7 +151,7 @@ namespace Quizzie
                 string group = Clients.Caller.AccessCode.ToString();
 
                 quizQuestionID = GetQuestionFromId((int)Clients.Caller.CurrentQuestion, (int)Clients.Caller.QuizID);
-                
+
 
 
                 DelayedChangeQuestion(Clients.Group(group), QuizQuestion.GetQuestionViewModel(quizQuestionID));
@@ -157,11 +176,15 @@ namespace Quizzie
             var name = Clients.Caller.Name;
 
             FinalResult _result = new FinalResult { Name = name, Score = score };
-            
+
             string accessCode = Clients.Caller.AccessCode.ToString();
 
+            if (Clients.Caller.Name != "Admin")
+            {
             Clients.Group(accessCode).addChatMessage(Clients.Caller.Name + Clients.Caller.Score);
+
             Clients.Group(accessCode).justDoIt(_result);
+            }
 
             return _result;
         }
