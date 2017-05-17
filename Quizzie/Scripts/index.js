@@ -137,4 +137,17 @@
         $("#score").append(finalResults.Name + " " + finalResults.Score + "<br>");
     };
 
+    quizHub.client.showUsers = function (name) {
+        $("#usersParticipating").append("<div id =" + name +">"+name+"</div>");
+    };
+
+    quizHub.client.changeAppearance = function (name) {
+        var user = name;
+    $("#"+user).addClass("btn btn-info");
+    };
+
+    quizHub.client.removeAppearance = function () {
+        $("#usersParticipating").children().removeClass("btn btn-info");
+    };
+    
 });
