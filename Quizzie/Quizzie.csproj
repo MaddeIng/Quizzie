@@ -131,7 +131,6 @@
     <Content Include="Global.asax" />
     <Content Include="images\loading16x16.gif" />
     <Content Include="images\loading32x32.gif" />
-    <Content Include="img\loading-spinner.svg" />
     <Content Include="img\elefant.png" />
     <Content Include="img\img3_2.jpg" />
     <Content Include="img\img3_3.jpg" />
