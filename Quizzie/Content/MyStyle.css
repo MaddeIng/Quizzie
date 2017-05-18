@@ -38,6 +38,11 @@ body.everythingInPage {
     margin-bottom: 50px;
 }
 
+#usersParticipating {
+    margin-top: 30px;
+}
+
+
 .imagediv {
     height: 240px;
 }
@@ -3873,6 +3878,27 @@ fieldset[disabled] a.btn {
 .btn-inQuiz {
     height: 100px;
     width: 150px;
+    background-color: #BD4682;
+    color: whitesmoke;
+    border-color: #BD4682;
+    margin: 5px;
+}
+.btn-correct {
+    height: 100px;
+    width: 150px;
+    background-color: #00aa3c;
+    color: whitesmoke;
+    border-color: #00aa3c;
+    margin: 5px;
+}
+
+.btn-fail {
+    height: 100px;
+    width: 150px;
+    background-color: #ff0707;
+    color: whitesmoke;
+    border-color: #ff0707;
+    margin: 5px;
 }
 .btn-default {
     color: #ffffff;

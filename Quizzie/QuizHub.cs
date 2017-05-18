@@ -57,6 +57,7 @@ namespace Quizzie
             Groups.Add(Context.ConnectionId, accessCode);
 
             Clients.Group(accessCode).addChatMessage("hello " + Clients.Caller.Name + " join the game");
+
             if (Clients.Caller.Name != "Admin")
             {
                 Clients.Client(adminConnection).showUsers(Clients.Caller.Name + " ");
@@ -89,7 +90,7 @@ namespace Quizzie
             //Get the question
             var question = QuizQuestion.GetQuestionViewModel(quizQuestionID);
 
-            SetQuestion(Clients.Caller, question);
+            SetMyQuestion(Clients.Caller, question);
         }
 
         private static int GetQuestionFromId(int questionID, int quizID)
@@ -103,13 +104,14 @@ namespace Quizzie
             return result;
         }
 
-        public bool IsCorrect(int quizQuestionAnswerID)
+        public string IsCorrect(int quizQuestionAnswerID)
         {
             if (Clients.Caller.Name != "Admin")
             {
                 Clients.Client(adminConnection).changeAppearance(Clients.Caller.Name);
 
             }
+
             var isCorrect = context.QuizQuestionAnswers
                 .SingleOrDefault(a => a.ID == quizQuestionAnswerID)
                 .IsCorrect;
@@ -124,7 +126,13 @@ namespace Quizzie
                 GoToNextQuestion();
             }
 
-            return isCorrect;
+            var jsonAnswer = new
+            {
+                ID = quizQuestionAnswerID,
+                answer = isCorrect
+            };
+
+            return JsonConvert.SerializeObject(jsonAnswer);
         }
 
         private void GoToNextQuestion()
@@ -132,9 +140,7 @@ namespace Quizzie
             var quizQuestionID = 0;
             int noOfQuestions = 0;
 
-
             Clients.Client(adminConnection).removeAppearance();
-
 
             try
             {
@@ -151,8 +157,6 @@ namespace Quizzie
                 string group = Clients.Caller.AccessCode.ToString();
 
                 quizQuestionID = GetQuestionFromId((int)Clients.Caller.CurrentQuestion, (int)Clients.Caller.QuizID);
-
-
 
                 DelayedChangeQuestion(Clients.Group(group), QuizQuestion.GetQuestionViewModel(quizQuestionID));
             }
@@ -181,12 +185,26 @@ namespace Quizzie
 
             if (Clients.Caller.Name != "Admin")
             {
-                Clients.Group(accessCode).addChatMessage(Clients.Caller.Name + Clients.Caller.Score);
+                // Clients.Group(accessCode).addChatMessage(Clients.Caller.Name + Clients.Caller.Score);
 
                 Clients.Group(accessCode).justDoIt(_result);
             }
 
             return _result;
+        }
+
+
+        private void SetMyQuestion(dynamic target, QuizQuestionVM question)
+        {
+            // Make the answers serializable
+            var answers = question.Answers.Select(a => new { Answer = a.Answer, ID = a.ID }).ToList();
+
+            var _question = new { Question = question.Question?.Question, ImageLink = question.Question?.ImageLink };
+
+            // Send the answers to the caller of this function
+            string group = Clients.Caller.AccessCode.ToString();
+
+            Clients.Caller.setQuestion(_question, answers);
         }
 
         private void SetQuestion(dynamic target, QuizQuestionVM question)
@@ -198,7 +216,9 @@ namespace Quizzie
 
             // Send the answers to the caller of this function
             string group = Clients.Caller.AccessCode.ToString();
+
             Clients.Group(group).setQuestion(_question, answers);
+
         }
 
         private void DelayedChangeQuestion(dynamic target, QuizQuestionVM question)
