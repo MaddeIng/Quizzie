@@ -1442,13 +1442,15 @@ html {
 }
 
 body {
+    /*height: 100%;
+    margin: 0;*/
+    /*background-repeat: no-repeat;*/
     font-family: 'Segoe UI', "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 15px;
     line-height: 1.42857143;
     color: #8C2057;
-    background-color: #FFFFFF;
-    background-image: linear-gradient(white, #620032);
-    background-attachment: fixed
+    background-color: #efdee7;
+    /*background-image: linear-gradient(white, #620032);*/
 }
 
 input,
