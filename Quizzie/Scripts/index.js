@@ -114,9 +114,6 @@
             $("#four").removeAttr("data-answer");
         };
 
-
-
-
         //$currentQuestion.toggle("drop", function () {
 
         console.log("currentQuestion");
