@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+﻿using Xunit;
 using Quizzie.Models.Entities;
 using System;
 using System.Collections.Generic;
@@ -7,18 +7,17 @@ using System.Web;
 
 namespace Quizzie
 {
-    [TestFixture]
     public class Tests
     {
-        [Test]
-        public void Test()
+        [Fact]
+        public void TestIfQuizExists()
         {
             QuizzieDBContext context = new QuizzieDBContext();
 
-            var quizExists = context.Quizs
-                .Any(q => q.ID == 9999);
+            bool quizExists = context.Quizs
+                .Any(q => q.AccessCode == 9999);
 
-            Assert.AreEqual(quizExists, true);
+            Assert.True(quizExists);
         }
     }
 }
