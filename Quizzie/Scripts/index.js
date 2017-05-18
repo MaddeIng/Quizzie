@@ -139,16 +139,17 @@
     };
 
     quizHub.client.showUsers = function (name) {
+        $("#usersParticipating").addClass("sofiabox");
         $("#usersParticipating").append("<div id =" + name + ">" + name + "</div>");
     };
 
     quizHub.client.changeAppearance = function (name) {
         var user = name;
-        $("#" + user).addClass("btn btn-info");
+        $("#" + user).addClass("appearence");
     };
 
     quizHub.client.removeAppearance = function () {
-        $("#usersParticipating").children().removeClass("btn btn-info");
+        $("#usersParticipating").children().removeClass("appearence");
     };
 
 });

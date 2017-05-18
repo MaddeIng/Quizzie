@@ -3,15 +3,6 @@
     font-family: Vanilla;
     src: url('../fonts/Vanilla.ttf') format('truetype');
 }
-/*@font-face {
-    font-family: 'Baloo-Regular';
-    src: url('../fonts/Baloo-Regular.ttf') format('truetype');
-}*/
-
-/*@font-face {
-	font-family: glyphicons-halflings-regular;
-	src: url('../fonts/glyphicons-halflings-regular.eot'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.woff');
-}*/
 
 @import url("https://fonts.googleapis.com/css?family=Lato:400,700,400italic");
 /*!
@@ -28,12 +19,11 @@
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 html {
-    font-family: 'Segoe UI';
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
 }
 
-body {
+body.everythingInPage {
     margin-top: 20px;
     margin-bottom: 0;
     margin-left: 0;
@@ -48,36 +38,9 @@ body {
     margin-bottom: 50px;
 }
 
-.questionImage {
-    max-width: 50%
+.imagediv {
+    height: 240px;
 }
-
-.btn-sofia {
-    color: whitesmoke;
-    background-color: #BD4682;
-    font-size: 20px;
-    font-weight: bold !important;
-    margin-top: 30px !important;
-    margin-bottom: 30px !important;
-    /*border-color: #3498db;*/
-    margin-left: 30px !important;
-    margin-right: 30px !important;
-}
-
-/*.questionClass {
-    font-family: 'Segoe UI' !important;
-}
-
-.resultH2 {
-    font-family: 'Segoe UI' !important;
-}*/
-
-/*p {
-    font-family: 'Segoe UI' !important;
-    font-size: 15px;
-    margin-bottom: 30px !important;
-    color: #BD4682 !important;
-}*/
 
 article,
 aside,
@@ -1518,10 +1481,15 @@ img {
     display: block;
     max-width: 100%;
     height: auto;
+    margin: 0 auto;
 }
 
 .img-rounded {
     border-radius: 6px;
+}
+
+.img-sofia {
+    height: 240px;
 }
 
 .img-thumbnail {
@@ -3289,6 +3257,16 @@ output {
     color: #2c3e50;
 }
 
+.sofiabox {
+    background-color: #f4fffe;
+    border: 1px solid #BD4682;
+    border-radius: 4px;
+}
+
+.appearence {
+font-weight: bold;
+}
+
 .form-control {
     display: block;
     width: 100%;
@@ -3851,6 +3829,7 @@ select[multiple].input-lg {
     user-select: none;
 }
 
+
     .btn:focus,
     .btn:active:focus,
     .btn.active:focus,
@@ -3891,6 +3870,10 @@ fieldset[disabled] a.btn {
     pointer-events: none;
 }
 
+.btn-inQuiz {
+    height: 100px;
+    width: 150px;
+}
 .btn-default {
     color: #ffffff;
     background-color: #95a5a6;
@@ -4089,21 +4072,30 @@ fieldset[disabled] a.btn {
     }
 
 .btn-info {
-    color: #ffffff;
-    background-color: #3498db;
-    border-color: #3498db;
+    color: whitesmoke;
+    background-color: #217dbb;
+    border-color: #2077b2;
     margin: 5px;
+}
+.btn-sofia {
+    color: whitesmoke;
+    background-color: #BD4682;
+    border-color: #BD4682;
+    margin: 5px;
+    width: 120px;
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
 
     .btn-info:focus,
     .btn-info.focus {
-        color: #ffffff;
-        background-color: #217dbb;
+        color: whitesmoke;
+        background-color: #BD4682;
         border-color: #16527a;
     }
 
     .btn-info:hover {
-        color: #ffffff;
+        color: whitesmoke;
         background-color: #217dbb;
         border-color: #2077b2;
     }

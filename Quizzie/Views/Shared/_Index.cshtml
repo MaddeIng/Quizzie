@@ -1,22 +1,20 @@
 ﻿
-<div class="container text-center">
-    <img src="~/img/elefant.png" width="100" height="100" />
-    <h1 class="header">Quizzie</h1>
+<img src="~/img/elefant.png" width="100" height="100" />
+<h1 class="header">Quizzie</h1>
 
-    @*<p class="ourFontSmall">Mata in namn och kod för att delta i ett quiz.</p>*@
-    <div class="row">
-        <label><input class="form-control ourFontSmall" id="player-name" type="text" placeholder="Namn"></label>
-    </div>
-    <div class="row">
-        <label><input class="form-control ourFontSmall" id="access-code" type="text" placeholder="Quiz-Kod"></label>
-    </div>
-    <div id="start-div" class="row">
-        <input type="button" class="btn btn-sofia ourFontSmall" id="start-btn" value="Starta">
-    </div>
-
-    @*<input type="button" id="login" class="btn btn-info" value="Skapa Quizzie / Logga in">*@
-    <a class="link" href="/Quiz/NewQuiz">Skapa quiz</a>
+@*<p class="ourFontSmall">Mata in namn och kod för att delta i ett quiz.</p>*@
+<div class="row">
+    <label><input class="form-control" id="player-name" type="text" placeholder="Namn"></label>
 </div>
+<div class="row">
+    <label><input class="form-control" id="access-code" type="text" placeholder="Quiz-Kod"></label>
+</div>
+<div id="start-div" class="row">
+    <input type="button" class="btn btn-sofia" id="start-btn" value="Starta">
+</div>
+
+@*<input type="button" id="login" class="btn btn-info" value="Skapa Quizzie / Logga in">*@
+<a href="/Quiz/NewQuiz">Skapa quiz</a>
 
 @section scripts{
 

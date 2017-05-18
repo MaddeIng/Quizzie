@@ -193,11 +193,9 @@
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Quiz\Results.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\_ViewImports.cshtml" />
     <Content Include="Scripts\jquery-1.9.1.min.map" />
-    <Content Include="Views\Quiz\Question.cshtml" />
     <Content Include="Views\Quiz\CreateQuestion.cshtml" />
     <Content Include="Views\Quiz\Login.cshtml" />
     <Content Include="Views\Shared\_Index.cshtml" />
