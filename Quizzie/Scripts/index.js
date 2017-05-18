@@ -37,7 +37,7 @@
                                         success: function (result) {
                                             $("#main-body").html(result);
                                             SetupQuiz(accessCode);
-                                        }   
+                                        }
                                     });
                                 });
                             }
@@ -94,12 +94,12 @@
         var $imageLink = $("#image-link");
         var $questionBody = $("#question-body");
 
-        
+
         //$currentQuestion.toggle("drop", function () {
 
         $imageLink.attr("src", question.ImageLink);
         $question.text(question.Question);
-        
+
         $("#one").val(answers[0].Answer).attr("data-answer", answers[0].ID).removeClass("btn btn-success").removeClass("btn btn-danger").addClass("btn btn-info");
         $("#two").val(answers[1].Answer).attr("data-answer", answers[1].ID).removeClass("btn btn-success").removeClass("btn btn-danger").addClass("btn btn-info");
         $("#three").val(answers[2].Answer).attr("data-answer", answers[2].ID).removeClass("btn btn-success").removeClass("btn btn-danger").addClass("btn btn-info");
@@ -115,10 +115,13 @@
             url: "/Quiz/GetPartialViewResults", type: "GET",
             success: function (result) {
                 $("#main-body").html(result);
+                $.loader.close();
 
                 quizHub.server.calculateIndividualScore()
                     .done(function (score) {
                         console.log(score);
+                        $.loader.close();
+                            
                     })
                     .fail(function () {
                         console.log("Failed to load score");
