@@ -67,19 +67,14 @@
 
                 var buttonClass = "";
 
-                if (result === "yes") {
+                if (result === true) {
                     buttonClass = "btn btn-success";
-                    $(event.target).removeClass("btn btn-info").addClass(buttonClass);
-                    $("input").off("click");
-                }
-                else if (result === "no") {
-                    buttonClass = "btn btn-danger";
-                    $(event.target).removeClass("btn btn-info").addClass(buttonClass);
-                    $("input").off("click");
                 }
                 else {
-                    console.log("Hej" +result);
+                    buttonClass = "btn btn-danger";
                 }
+                    $(event.target).removeClass("btn btn-info").addClass(buttonClass);
+                    $("input").off("click");
 
             })
             .fail(function (event) {

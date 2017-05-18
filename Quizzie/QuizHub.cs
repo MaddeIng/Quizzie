@@ -103,35 +103,28 @@ namespace Quizzie
             return result;
         }
 
-        public string IsCorrect(int quizQuestionAnswerID)
+        public bool IsCorrect(int quizQuestionAnswerID)
         {
-            string isCorrectOrAdmin ="admin";
-
             if (Clients.Caller.Name != "Admin")
             {
                 Clients.Client(adminConnection).changeAppearance(Clients.Caller.Name);
 
-                var isCorrect = context.QuizQuestionAnswers
-                    .SingleOrDefault(a => a.ID == quizQuestionAnswerID)
-                    .IsCorrect;
-
-                if (isCorrect)
-                {
-                    Clients.Caller.Score++;
-                    isCorrectOrAdmin = "yes";
-                }
-                else
-                {
-                    isCorrectOrAdmin = "no";
-                }
-
             }
+            var isCorrect = context.QuizQuestionAnswers
+                .SingleOrDefault(a => a.ID == quizQuestionAnswerID)
+                .IsCorrect;
+
+            if (isCorrect)
+            {
+                Clients.Caller.Score++;
+            }
+
             if (Clients.Caller.Name == "Admin")
             {
                 GoToNextQuestion();
             }
 
-            return isCorrectOrAdmin;
+            return isCorrect;
         }
 
         private void GoToNextQuestion()
