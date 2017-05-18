@@ -47,6 +47,10 @@ body.everythingInPage {
     height: 240px;
 }
 
+.header3Class{
+    font-weight: bold;
+}
+
 article,
 aside,
 details,
@@ -86,7 +90,7 @@ a {
     font-family: 'Segoe UI' !important;
     font-size: 15px;
     font-weight: bold !important;
-    color: #BD4682 !important;
+    color: #620032 !important;
 }
 
     a:active,
@@ -1441,8 +1445,10 @@ body {
     font-family: 'Segoe UI', "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 15px;
     line-height: 1.42857143;
-    color: #2c3e50;
-    background-color: #DAFDFF;
+    color: #8C2057;
+    background-color: #FFFFFF;
+    background-image: linear-gradient(white, #620032);
+    background-attachment: fixed
 }
 
 input,
@@ -3283,7 +3289,7 @@ font-weight: bold;
     font-size: 15px !important;
     line-height: 1.42857143;
     color: #2c3e50;
-    background-color: #f4fffe;
+    background-color: #FBF5FC;
     background-image: none;
     border: 1px solid #BD4682;
     border-radius: 4px;
