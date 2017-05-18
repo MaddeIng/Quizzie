@@ -193,12 +193,10 @@
     <Compile Include="Models\QuizCreator.cs" />
     <Compile Include="Models\QuizQuestion.cs" />
     <Compile Include="Models\QuizQuestionAnswer.cs" />
-    <Compile Include="Models\QuizResult.cs" />
     <Compile Include="Models\VM\QuizCreateVM.cs" />
     <Compile Include="Models\VM\QuizIndexVM.cs" />
     <Compile Include="Models\VM\QuizQuestionVM.cs" />
     <Compile Include="Models\VM\QuizResultsVM.cs" />
-    <Compile Include="Models\VM\QuizTitleVM.cs" />
     <Compile Include="Models\VM\QuizVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuizHub.cs" />
@@ -221,7 +219,6 @@
     <Content Include="Views\Quiz\Index.cshtml" />
     <Content Include="Views\Quiz\Title.cshtml" />
     <Content Include="Views\Shared\_Results.cshtml" />
-    <Content Include="Views\Quiz\Title - Copy.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
