@@ -52,32 +52,45 @@
     }
 
     function SetupQuiz(accessCode) {
-        quizHub.server.initialize(accessCode);
-
-        $("body").toggle("drop");
-        var isCorrect;
+        console.log("SetupQuiz");
+        quizHub.server.initialize(accessCode)
+            .done(function () {
+                $("body").toggle("drop");
+            });
     }
 
     function handleInputClick(event) {
 
         //$.loader.open({ title: "Väntar på samtliga svar" }); //TS
+        var x = event.data.id;
 
-        quizHub.server.isCorrect($(this).data().answer)
+        console.log(x);
+
+        quizHub.server.isCorrect(x)
             .done(function (result) {
+
+                result = JSON.parse(result);
+
+                console.log("Result: " + result);
 
                 var buttonClass = "";
 
-                if (result === true) {
+                if (result.answer === true) {
                     buttonClass = "btn btn-correct";
                 }
                 else {
                     buttonClass = "btn btn-fail";
                 }
-                $(event.target).removeClass("btn btn-inQuiz").addClass(buttonClass);
-                    $("input").off("click");
+
+                var testbutton = $("input[data-answer='" + result.ID + "']");
+
+                console.log(testbutton);
+
+                $("input[data-answer='" + result.ID + "']").removeClass("btn btn-inQuiz").addClass(buttonClass);
+                $("input").off("click");
 
             })
-            .fail(function (event) {
+            .fail(function (result) {
                 console.log("FAAAIL");
                 console.log(arguments);
             });
@@ -85,7 +98,8 @@
 
     quizHub.client.setQuestion = function (question, answers) {
 
-        //$.loader.close(); //TS
+        console.log("setQuestion");
+
 
         var $currentQuestion = $("#currentQuestion");
         var $question = $("#question");
@@ -93,9 +107,19 @@
         var $imageLink = $("#image-link");
         var $questionBody = $("#question-body");
 
+        var noDataAnswers = function () {
+            $("#one").removeAttr("data-answer");
+            $("#two").removeAttr("data-answer");
+            $("#three").removeAttr("data-answer");
+            $("#four").removeAttr("data-answer");
+        };
+
+
+
 
         //$currentQuestion.toggle("drop", function () {
 
+        console.log("currentQuestion");
         $imageLink.attr("src", question.ImageLink);
         $question.text(question.Question);
 
@@ -103,10 +127,14 @@
         $("#two").val(answers[1].Answer).attr("data-answer", answers[1].ID).removeClass("btn btn-correct").removeClass("btn btn-fail").addClass("btn btn-inQuiz");
         $("#three").val(answers[2].Answer).attr("data-answer", answers[2].ID).removeClass("btn btn-correct").removeClass("btn btn-fail").addClass("btn btn-inQuiz");
         $("#four").val(answers[3].Answer).attr("data-answer", answers[3].ID).removeClass("btn btn-correct").removeClass("btn btn-fail").addClass("btn btn-inQuiz");
-        $("input").on("click", handleInputClick);
+
+        $("#one").click({ id: answers[0].ID }, handleInputClick);
+        $("#two").click({ id: answers[1].ID }, handleInputClick);
+        $("#three").click({ id: answers[2].ID }, handleInputClick);
+        $("#four").click({ id: answers[3].ID }, handleInputClick);
 
         $currentQuestion.show();
-        //}) 
+        //})
     };
 
     quizHub.client.calculateFinalScore = function () {
