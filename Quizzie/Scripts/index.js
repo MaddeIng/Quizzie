@@ -68,12 +68,12 @@
                 var buttonClass = "";
 
                 if (result === true) {
-                    buttonClass = "btn btn-success";
+                    buttonClass = "btn btn-correct";
                 }
                 else {
-                    buttonClass = "btn btn-danger";
+                    buttonClass = "btn btn-fail";
                 }
-                    $(event.target).removeClass("btn btn-info").addClass(buttonClass);
+                $(event.target).removeClass("btn btn-inQuiz").addClass(buttonClass);
                     $("input").off("click");
 
             })
@@ -99,10 +99,10 @@
         $imageLink.attr("src", question.ImageLink);
         $question.text(question.Question);
 
-        $("#one").val(answers[0].Answer).attr("data-answer", answers[0].ID).removeClass("btn btn-success").removeClass("btn btn-danger").addClass("btn btn-info");
-        $("#two").val(answers[1].Answer).attr("data-answer", answers[1].ID).removeClass("btn btn-success").removeClass("btn btn-danger").addClass("btn btn-info");
-        $("#three").val(answers[2].Answer).attr("data-answer", answers[2].ID).removeClass("btn btn-success").removeClass("btn btn-danger").addClass("btn btn-info");
-        $("#four").val(answers[3].Answer).attr("data-answer", answers[3].ID).removeClass("btn btn-success").removeClass("btn btn-danger").addClass("btn btn-info");
+        $("#one").val(answers[0].Answer).attr("data-answer", answers[0].ID).removeClass("btn btn-correct").removeClass("btn btn-fail").addClass("btn btn-inQuiz");
+        $("#two").val(answers[1].Answer).attr("data-answer", answers[1].ID).removeClass("btn btn-correct").removeClass("btn btn-fail").addClass("btn btn-inQuiz");
+        $("#three").val(answers[2].Answer).attr("data-answer", answers[2].ID).removeClass("btn btn-correct").removeClass("btn btn-fail").addClass("btn btn-inQuiz");
+        $("#four").val(answers[3].Answer).attr("data-answer", answers[3].ID).removeClass("btn btn-correct").removeClass("btn btn-fail").addClass("btn btn-inQuiz");
         $("input").on("click", handleInputClick);
 
         $currentQuestion.show();
