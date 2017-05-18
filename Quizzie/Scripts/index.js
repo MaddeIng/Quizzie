@@ -4,7 +4,7 @@
         url: "/Quiz/GetPartialViewIndex", type: "GET",
         success: function (result) {
             $("#main-body").html(result);
-            $.loader.open();
+            //$.loader.open();
             SetIndexPage();
         }
     });
@@ -12,7 +12,7 @@
     var quizHub = $.connection.quizHub;
 
     function SetIndexPage() {
-        $.loader.close();
+        //$.loader.close();
         $("#start-div #start-btn").click(function () {
             var playerName = $("#player-name").val();
             var accessCode = $("#access-code").val();
@@ -60,7 +60,7 @@
 
     function handleInputClick(event) {
 
-        $.loader.open({ title: "Väntar på samtliga svar" }); //TS
+        //$.loader.open({ title: "Väntar på samtliga svar" }); //TS
 
         quizHub.server.isCorrect($(this).data().answer)
             .done(function (result) {
@@ -90,7 +90,7 @@
 
     quizHub.client.setQuestion = function (question, answers) {
 
-        $.loader.close(); //TS
+        //$.loader.close(); //TS
 
         var $currentQuestion = $("#currentQuestion");
         var $question = $("#question");
@@ -115,7 +115,7 @@
     };
 
     quizHub.client.calculateFinalScore = function () {
-        $.loader.close();
+        //$.loader.close();
         $.ajax({
             url: "/Quiz/GetPartialViewResults", type: "GET",
             success: function (result) {
