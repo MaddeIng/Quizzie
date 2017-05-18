@@ -111,11 +111,12 @@
     };
 
     quizHub.client.calculateFinalScore = function () {
+        $.loader.close();
         $.ajax({
             url: "/Quiz/GetPartialViewResults", type: "GET",
             success: function (result) {
                 $("#main-body").html(result);
-                $.loader.close();
+                //$.loader.close();
 
                 quizHub.server.calculateIndividualScore()
                     .done(function (score) {
