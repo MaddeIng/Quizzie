@@ -66,17 +66,21 @@
             .done(function (result) {
 
                 var buttonClass = "";
-                if (result === true) {
-                    buttonClass = "btn btn-success";
 
-                    //point++;
-                    var point = 0;
+                if (result === "yes") {
+                    buttonClass = "btn btn-success";
+                    $(event.target).removeClass("btn btn-info").addClass(buttonClass);
+                    $("input").off("click");
+                }
+                else if (result === "no") {
+                    buttonClass = "btn btn-danger";
+                    $(event.target).removeClass("btn btn-info").addClass(buttonClass);
+                    $("input").off("click");
                 }
                 else {
-                    buttonClass = "btn btn-danger";
+                    console.log("Hej" +result);
                 }
-                $(event.target).removeClass("btn btn-info").addClass(buttonClass);
-                $("input").off("click");
+
             })
             .fail(function (event) {
                 console.log("FAAAIL");
@@ -122,7 +126,7 @@
                     .done(function (score) {
                         console.log(score);
                         $.loader.close();
-                            
+
                     })
                     .fail(function () {
                         console.log("Failed to load score");

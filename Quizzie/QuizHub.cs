@@ -103,28 +103,35 @@ namespace Quizzie
             return result;
         }
 
-        public bool IsCorrect(int quizQuestionAnswerID)
+        public string IsCorrect(int quizQuestionAnswerID)
         {
+            string isCorrectOrAdmin ="admin";
+
             if (Clients.Caller.Name != "Admin")
             {
                 Clients.Client(adminConnection).changeAppearance(Clients.Caller.Name);
+
+                var isCorrect = context.QuizQuestionAnswers
+                    .SingleOrDefault(a => a.ID == quizQuestionAnswerID)
+                    .IsCorrect;
+
+                if (isCorrect)
+                {
+                    Clients.Caller.Score++;
+                    isCorrectOrAdmin = "yes";
+                }
+                else
+                {
+                    isCorrectOrAdmin = "no";
+                }
+
             }
-
-            var isCorrect = context.QuizQuestionAnswers
-                .SingleOrDefault(a => a.ID == quizQuestionAnswerID)
-                .IsCorrect;
-
-            if (isCorrect)
-            {
-                Clients.Caller.Score++;
-            }
-
             if (Clients.Caller.Name == "Admin")
             {
                 GoToNextQuestion();
             }
 
-            return isCorrect;
+            return isCorrectOrAdmin;
         }
 
         private void GoToNextQuestion()
@@ -181,9 +188,9 @@ namespace Quizzie
 
             if (Clients.Caller.Name != "Admin")
             {
-            Clients.Group(accessCode).addChatMessage(Clients.Caller.Name + Clients.Caller.Score);
+                Clients.Group(accessCode).addChatMessage(Clients.Caller.Name + Clients.Caller.Score);
 
-            Clients.Group(accessCode).justDoIt(_result);
+                Clients.Group(accessCode).justDoIt(_result);
             }
 
             return _result;

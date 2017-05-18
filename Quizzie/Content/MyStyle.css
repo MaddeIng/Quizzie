@@ -4087,18 +4087,18 @@ fieldset[disabled] a.btn {
     margin-bottom: 30px;
 }
 
-    .btn-info:focus,
-    .btn-info.focus {
-        color: whitesmoke;
-        background-color: #BD4682;
-        border-color: #16527a;
-    }
+.btn-info:focus,
+.btn-info.focus {
+    color: whitesmoke;
+    background-color: #217dbb;
+    border-color: #16527a;
+}
 
-    .btn-info:hover {
-        color: whitesmoke;
-        background-color: #217dbb;
-        border-color: #2077b2;
-    }
+.btn-info:hover {
+    color: whitesmoke;
+    background-color: #217dbb;
+    border-color: #2077b2;
+}
 
     .btn-info:active,
     .btn-info.active,
