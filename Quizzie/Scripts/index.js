@@ -165,7 +165,10 @@
 
     quizHub.client.showUsers = function (name) {
         $("#usersParticipating").addClass("sofiabox");
+        $("#usersParticipating").addClass("clearfix");
+
         $("#usersParticipating").append("<div id =" + name + ">" + name + "</div>");
+        $("#" + user).addClass("nameOnAdminPage");
     };
 
     quizHub.client.changeAppearance = function (name) {

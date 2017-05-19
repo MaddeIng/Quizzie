@@ -42,6 +42,11 @@ body.everythingInPage {
     margin-top: 30px;
 }
 
+.nameOnAdminPage {
+    float: left;
+    margin: 5px;
+}
+
 
 .imagediv {
     height: 240px;
